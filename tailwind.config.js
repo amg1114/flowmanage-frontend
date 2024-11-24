@@ -17,7 +17,20 @@ export default {
     fontFamily: {
       roboto: ["Roboto Condensed", "sans-serif"],
       inter: ["Inter", "sans-serif"],
-    }
+    },
+    container: {
+      center: true,
+      padding: {
+        DEFAULT: "1.25rem",
+        lg: "0",
+      },
+      screens: {
+        sm: "100%",
+        md: "100%",
+        lg: "1024px",
+        xl: "1280px",
+      },
+    },
   },
   plugins: [],
 };
