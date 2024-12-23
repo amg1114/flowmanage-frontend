@@ -1,8 +1,9 @@
 <header
   class="flex items-start md:items-center justify-between sticky top-0 py-5"
 >
-  <app-horizontal-brand />
-  <nav class="ml-auto font-inter font-light hidden md:block">
+  <app-horizontal-brand class="hidden md:block" />
+
+  <nav class="mx-auto md:mr-0 font-inter font-light">
     <ul class="flex gap-6">
       <li *ngFor="let link of menuItems; let i = index">
         <a
@@ -15,11 +16,4 @@
       </li>
     </ul>
   </nav>
-
-  <button
-    type="button"
-    class="text-light-primary dark:text-dark-primary md:hidden"
-  >
-    <lucide-icon [img]="MenuIcon" class="w-6 h-6" />
-  </button>
 </header>

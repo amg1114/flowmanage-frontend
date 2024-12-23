@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HorizontalBrandComponent } from '../horizontal-brand/horizontal-brand.component';
-import { LucideAngularModule, Menu } from 'lucide-angular';
+
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -8,7 +8,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-header',
   imports: [
     HorizontalBrandComponent,
-    LucideAngularModule,
     RouterLink,
     RouterLinkActive,
     CommonModule,
@@ -17,7 +16,6 @@ import { CommonModule } from '@angular/common';
   styles: ``,
 })
 export class HeaderComponent {
-  readonly MenuIcon = Menu;
   readonly menuItems = [
     {
       name: 'Home',
