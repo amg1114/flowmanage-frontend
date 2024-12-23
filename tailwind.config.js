@@ -13,6 +13,7 @@ export default {
       "dark-bg": "#04090B",
       "light-accent": "#7FBDB1",
       "dark-accent": "#428074",
+      transparent: "transparent",
     },
     fontFamily: {
       roboto: ["Roboto Condensed", "sans-serif"],
@@ -32,7 +33,5 @@ export default {
       },
     },
   },
-  plugins: [
-    "prettier-plugin-tailwindcss"
-  ],
+  plugins: ["prettier-plugin-tailwindcss"],
 };
