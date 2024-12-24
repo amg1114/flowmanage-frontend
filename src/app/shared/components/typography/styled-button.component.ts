@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
       [class]="
         styleClasses[variant][colorStyle] +
         ' rounded transition-colors duration-300' +
-        (variant !== 'ghosted' ? ' py-2 px-4' : '')
+        (variant !== 'ghosted' ? ' px-4 py-2' : '')
       "
     >
       <ng-content></ng-content>

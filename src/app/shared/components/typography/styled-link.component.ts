@@ -7,8 +7,8 @@ import { Component, Input } from '@angular/core';
     <a
       [class]="
         styleClasses[variant][colorStyle] +
-        ' rounded transition-colors duration-300 cursor-pointer' +
-        (variant !== 'ghosted' ? ' py-2 px-4' : '')
+        ' cursor-pointer rounded transition-colors duration-300' +
+        (variant !== 'ghosted' ? ' px-4 py-2' : '')
       "
     >
       <ng-content></ng-content>
