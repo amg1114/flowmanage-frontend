@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-2">
   @if (label) {
-    <label for="">{{ label }}</label>
+    <label [for]="id">{{ label }}</label>
   }
 
   <input
@@ -8,6 +8,6 @@
     [name]="name"
     [id]="id"
     [placeholder]="placeholder"
-    class="border-b-2 border-b-light-text/50 bg-transparent pb-2 text-base outline-none transition-all focus:border-b-2 focus:border-b-light-primary dark:border-b-light-text dark:focus:border-b-dark-primary"
+    class="border-b-2 border-b-light-text/50 bg-transparent pb-2 text-base outline-none transition-all placeholder:font-light focus:border-b-2 focus:border-b-light-primary dark:border-b-light-text dark:focus:border-b-dark-primary"
   />
 </div>

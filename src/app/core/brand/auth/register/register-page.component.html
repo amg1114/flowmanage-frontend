@@ -1,1 +1,72 @@
-<p>register-page works!</p>
+<section class="w-full md:min-w-96">
+  <h1 class="text-center font-roboto text-3xl">Sign Up</h1>
+  <p class="text-center font-light">
+    Already have an account?
+    <a styled-link routerLink="/login">Sign In</a>
+  </p>
+
+  <form action="" class="mt-12 font-light">
+    <section class="flex flex-col gap-4">
+      <div class="flex flex-wrap gap-4 md:flex-nowrap">
+        <styled-input
+          class="w-full"
+          label="First Name"
+          placeholder="John"
+          type="text"
+          name="firstName"
+          id="firstName"
+        />
+        <styled-input
+          class="w-full"
+          label="Last Name"
+          placeholder="Doe"
+          type="text"
+          name="lastName"
+          id="lastName"
+        />
+      </div>
+
+      <styled-input
+        label="Password?"
+        placeholder="********"
+        type="password"
+        name="password"
+        id="password"
+      ></styled-input>
+    </section>
+
+    <section class="mt-8 flex flex-col gap-4">
+      <button
+        styled-button
+        type="submit"
+        colorStyle="primary"
+        variant="filled"
+        class="w-full self-stretch"
+      >
+        Create Account
+      </button>
+      <span
+        class="flex items-center justify-center gap-2 text-sm text-light-secondary dark:text-dark-secondary"
+      >
+        <span
+          class="flex-1 border-t border-light-secondary dark:border-dark-secondary"
+        ></span>
+        OR
+        <span
+          class="flex-1 border-t border-light-secondary dark:border-dark-secondary"
+        ></span>
+      </span>
+      <button
+        styled-button
+        type="submit"
+        colorStyle="primary"
+        variant="outlined"
+        colorStyle="text"
+        class="flex w-full items-center justify-center gap-2 !border"
+      >
+        <i google-icon></i>
+        Continue with Google
+      </button>
+    </section>
+  </form>
+</section>
