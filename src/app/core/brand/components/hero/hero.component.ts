@@ -3,9 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-hero',
   imports: [],
-  templateUrl: './hero.component.html',
-  styles: ``
+  template: ``,
+  styles: ``,
 })
-export class HeroComponent {
-
-}
+export class HeroComponent {}
