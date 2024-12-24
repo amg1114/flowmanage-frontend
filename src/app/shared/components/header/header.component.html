@@ -9,7 +9,8 @@
         <a
           [routerLink]="link.route"
           routerLinkActive="border-b-light-bg"
-          class="border-b-2 border-transparent text-dark-text transition-colors hover:text-light-secondary dark:hover:text-dark-secondary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="border-b-2 border-transparent transition-colors hover:text-light-secondary md:text-dark-text dark:hover:text-dark-secondary"
           >{{ link.name }}
         </a>
       </li>

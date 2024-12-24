@@ -8,8 +8,8 @@ import { RouterOutlet } from '@angular/router';
   template: `
     <app-header />
     <main class="container inset-0 flex md:h-[70vh]">
-      <article class="max-w-md self-center">
-        <router-outlet></router-outlet>
+      <article class="w-full max-w-md self-center">
+        <router-outlet class="w-full"></router-outlet>
       </article>
       <div
         class="absolute right-0 top-0 hidden h-[75vh] w-1/2 rounded-bl-3xl bg-heroThumb bg-cover bg-center bg-no-repeat md:block"

@@ -8,7 +8,8 @@ import { Component, Input } from '@angular/core';
       [class]="
         styleClasses[variant][colorStyle] +
         ' cursor-pointer rounded transition-colors duration-300' +
-        (variant !== 'ghosted' ? ' px-4 py-2' : '')
+        (variant !== 'ghosted' ? ' px-4 py-2' : '') +
+        (class ? ' ' + class : '')
       "
     >
       <ng-content></ng-content>
@@ -22,6 +23,9 @@ export class StyledLinkComponent {
 
   @Input()
   colorStyle: 'primary' | 'secondary' | 'accent' = 'primary';
+
+  @Input()
+  class: string = '';
 
   readonly styleClasses = {
     filled: {
