@@ -8,8 +8,8 @@
       <li *ngFor="let link of menuItems; let i = index">
         <a
           [routerLink]="link.route"
-          routerLinkActive="text-light-primary dark:text-dark-primary font-normal"
-          class="transition-colors hover:text-light-secondary dark:hover:text-dark-secondary"
+          routerLinkActive="border-b-light-bg"
+          class="transition-colors text-dark-text hover:text-light-secondary dark:hover:text-dark-secondary border-b-2 border-transparent"
           >{{ link.name }}
         </a>
       </li>
