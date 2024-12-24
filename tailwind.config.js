@@ -32,6 +32,11 @@ export default {
         xl: "1280px",
       },
     },
+    extend: {
+      backgroundImage: {
+        heroThumb: "url('/hero/hero-thumb.jpg')",
+      },
+    },
   },
   plugins: ["prettier-plugin-tailwindcss"],
 };
