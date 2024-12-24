@@ -1,21 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostBinding, Input } from '@angular/core';
 
 @Component({
-  selector: 'styled-button',
+  selector: '[styled-button]',
   imports: [],
-  template: `
-    <button
-      [type]="type"
-      [class]="
-        styleClasses[variant][colorStyle] +
-        ' rounded transition-colors duration-300' +
-        (variant !== 'ghosted' ? ' px-4 py-2' : '') +
-        (class ? ' ' + class : '')
-      "
-    >
-      <ng-content></ng-content>
-    </button>
-  `,
+  template: ` <ng-content></ng-content> `,
   styles: ``,
 })
 export class StyledButtonComponent {
@@ -59,4 +47,19 @@ export class StyledButtonComponent {
       text: 'd-inline text-light-text dark:text-light-text',
     },
   };
+
+  @HostBinding('attr.type')
+  get buttonType() {
+    return this.type;
+  }
+
+  @HostBinding('class')
+  get buttonClass() {
+    return (
+      this.styleClasses[this.variant][this.colorStyle] +
+      ' rounded transition-colors duration-300' +
+      (this.variant !== 'ghosted' ? ' px-4 py-2' : '') +
+      (this.class ? ' ' + this.class : '')
+    );
+  }
 }
