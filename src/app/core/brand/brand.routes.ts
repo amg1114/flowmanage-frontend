@@ -25,6 +25,20 @@ export const routes: Routes = [
             (m) => m.ContactPageComponent,
           ),
       },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./auth/login/login-page.component').then(
+            (m) => m.LoginPageComponent,
+          ),
+      },
+      {
+        path: 'register',
+        loadComponent: () =>
+          import('./auth/register/register-page.component').then(
+            (m) => m.RegisterPageComponent,
+          ),
+      },
     ],
   },
 ];
