@@ -8,16 +8,16 @@ import { RouterOutlet } from '@angular/router';
   template: `
     <app-header />
     <main class="container inset-0 flex md:h-[70vh]">
-      <article class="self-center max-w-md">
+      <article class="max-w-md self-center">
         <router-outlet></router-outlet>
       </article>
       <div
-        class="absolute w-1/2 right-0 top-0 hidden md:block h-[75vh] bg-no-repeat bg-cover bg-center bg-heroThumb rounded-bl-3xl"
+        class="absolute right-0 top-0 hidden h-[75vh] w-1/2 rounded-bl-3xl bg-heroThumb bg-cover bg-center bg-no-repeat md:block"
       >
         <span
-          class="absolute inset-0 bg-light-primary/85 rounded-bl-3xl"
+          class="absolute inset-0 rounded-bl-3xl bg-light-primary/85"
         ></span>
-        <figure class="absolute z-10 -translate-x-[20%] bottom-0 left-0">
+        <figure class="absolute bottom-0 left-0 z-10 -translate-x-[20%]">
           <img src="/hero/hero-figure.png" alt="App Indicators" width="750px" />
         </figure>
       </div>

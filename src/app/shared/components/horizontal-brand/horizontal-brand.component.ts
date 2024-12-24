@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-horizontal-brand',
   imports: [],
   templateUrl: './horizontal-brand.component.html',
-  styles: ``
+  styles: ``,
 })
-export class HorizontalBrandComponent {
-
-}
+export class HorizontalBrandComponent {}

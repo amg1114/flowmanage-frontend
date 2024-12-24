@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-contact-page',
   imports: [],
   templateUrl: './contact-page.component.html',
-  styles: ``
+  styles: ``,
 })
-export class ContactPageComponent {
-
-}
+export class ContactPageComponent {}
