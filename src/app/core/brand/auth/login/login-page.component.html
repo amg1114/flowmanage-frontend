@@ -2,7 +2,7 @@
   <h1 class="text-center font-roboto text-3xl">Sign In</h1>
   <p class="text-center font-light">
     Don't have an account?
-    <styled-link routerLink="register">Sign Up</styled-link>
+    <a styled-link routerLink="register">Sign Up</a>
   </p>
 
   <form action="" class="mt-12">
@@ -24,18 +24,21 @@
     </section>
 
     <section class="mt-8 flex flex-col gap-4">
-      <styled-link
+      <a
+        styled-link
         routerLink="/reset-password"
         class="text-right text-sm !no-underline"
-        >Forgot your Password?</styled-link
+        >Forgot your Password?</a
       >
-      <styled-button
+      <button
+        styled-button
         type="submit"
         colorStyle="primary"
         variant="filled"
         class="w-full self-stretch"
-        >Sign In</styled-button
       >
+        Sign In
+      </button>
       <span
         class="flex items-center justify-center gap-2 text-sm text-light-secondary dark:text-dark-secondary"
       >
@@ -47,12 +50,13 @@
           class="flex-1 border-t border-light-secondary dark:border-dark-secondary"
         ></span>
       </span>
-      <styled-button
+      <button
+        styled-button
         type="submit"
         colorStyle="primary"
         variant="outlined"
         colorStyle="text"
-        class="flex w-full items-center justify-center gap-2"
+        class="flex w-full items-center justify-center gap-2 !border"
       >
         <svg
           width="20"
@@ -85,8 +89,8 @@
             </clipPath>
           </defs>
         </svg>
-        Continue with Google</styled-button
-      >
+        Continue with Google
+      </button>
     </section>
   </form>
 </section>

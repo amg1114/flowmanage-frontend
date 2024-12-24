@@ -1,21 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, HostBinding } from '@angular/core';
 
 @Component({
-  selector: 'styled-link',
-  imports: [],
-  template: `
-    <a
-      [class]="
-        styleClasses[variant][colorStyle] +
-        ' cursor-pointer rounded transition-colors duration-300' +
-        (variant !== 'ghosted' ? ' px-4 py-2' : '') +
-        (class ? ' ' + class : '')
-      "
-    >
-      <ng-content></ng-content>
-    </a>
-  `,
-  styles: ``,
+  selector: '[styled-link]',
+  template: ` <ng-content></ng-content> `,
+  styles: [],
 })
 export class StyledLinkComponent {
   @Input()
@@ -26,6 +14,16 @@ export class StyledLinkComponent {
 
   @Input()
   class: string = '';
+
+  @HostBinding('class')
+  get linkClass(): string {
+    return (
+      this.styleClasses[this.variant][this.colorStyle] +
+      ' cursor-pointer rounded transition-colors duration-300' +
+      (this.variant !== 'ghosted' ? ' px-4 py-2' : '') +
+      (this.class ? ' ' + this.class : '')
+    );
+  }
 
   readonly styleClasses = {
     filled: {
