@@ -18,7 +18,7 @@ import { Component, Input } from '@angular/core';
 })
 export class StyledLinkComponent {
   @Input()
-  variant: 'outlined' | 'filled' | 'ghosted' = 'filled';
+  variant: 'outlined' | 'filled' | 'ghosted' = 'ghosted';
 
   @Input()
   colorStyle: 'primary' | 'secondary' | 'accent' = 'primary';
@@ -43,9 +43,12 @@ export class StyledLinkComponent {
     },
 
     ghosted: {
-      primary: 'd-inline text-light-primary',
-      secondary: 'd-inline text-light-secondary dark:text-dark-secondary',
-      accent: 'd-inline text-light-accent dark:text-light-accent',
+      primary:
+        'd-inline text-light-primary underline hover:text-light-secondary dark:hover:text-dark-secondary',
+      secondary:
+        'd-inline text-light-secondary dark:text-dark-secondary underline hover:text-light-secondary dark:hover:text-dark-secondary',
+      accent:
+        'd-inline text-light-accent dark:text-light-accent underline hover:text-light-secondary dark:hover:text-dark-secondary',
     },
   };
 }
