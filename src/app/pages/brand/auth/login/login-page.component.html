@@ -5,7 +5,7 @@
     <a styled-link routerLink="/register">Sign Up</a>
   </p>
 
-  <form action="" class="mt-12">
+  <form [formGroup]="loginForm" class="mt-12" (ngSubmit)="onSubmit()">
     <section class="flex flex-col gap-4">
       <styled-input
         label="E-mail"
@@ -13,14 +13,21 @@
         type="email"
         name="email"
         id="email"
-      ></styled-input>
+        formControlName="email"
+        [control]="loginForm.get('email')"
+      />
+
       <styled-input
         label="Password?"
         placeholder="********"
         type="password"
         name="password"
         id="password"
-      ></styled-input>
+        formControlName="password"
+        [control]="loginForm.get('password')"
+      />
+      {{ loginForm.get('email')?.getRawValue() }}
+      {{ loginForm.get('password')?.getRawValue() }}
     </section>
 
     <section class="mt-8 flex flex-col gap-4">
@@ -36,6 +43,7 @@
         colorStyle="primary"
         variant="filled"
         class="w-full self-stretch"
+        [disabled]="!loginForm.valid"
       >
         Sign In
       </button>
@@ -52,7 +60,7 @@
       </span>
       <button
         styled-button
-        type="submit"
+        type="button"
         colorStyle="primary"
         variant="outlined"
         colorStyle="text"

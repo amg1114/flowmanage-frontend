@@ -13,6 +13,9 @@ export default {
       'dark-bg': '#04090B',
       'light-accent': '#7FBDB1',
       'dark-accent': '#428074',
+      'light-error': '#FF0000',
+      error: '#FF0000',
+      success: '#63dc98',
       transparent: 'transparent',
     },
     fontFamily: {
