@@ -1,4 +1,5 @@
-import { Component, HostBinding, Input } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: '[styled-button]',
@@ -7,17 +8,11 @@ import { Component, HostBinding, Input } from '@angular/core';
   styles: ``,
 })
 export class StyledButtonComponent {
-  @Input()
-  variant: 'outlined' | 'filled' | 'ghosted' = 'filled';
-
-  @Input()
-  colorStyle: 'primary' | 'secondary' | 'accent' | 'text' = 'primary';
-
-  @Input()
-  type: 'button' | 'submit' = 'button';
-
-  @Input()
-  class: string = '';
+  @Input() variant: 'outlined' | 'filled' | 'ghosted' = 'filled';
+  @Input() colorStyle: 'primary' | 'secondary' | 'accent' | 'text' = 'primary';
+  @Input() type: 'button' | 'submit' = 'button';
+  @Input() class: string = '';
+  @Input() control?: FormControl | AbstractControl | null;
 
   readonly styleClasses = {
     filled: {
@@ -57,7 +52,7 @@ export class StyledButtonComponent {
   get buttonClass() {
     return (
       this.styleClasses[this.variant][this.colorStyle] +
-      ' rounded transition-colors duration-300' +
+      ' rounded transition-colors duration-300 disabled:pointer-events-none' +
       (this.variant !== 'ghosted' ? ' px-4 py-2' : '') +
       (this.class ? ' ' + this.class : '')
     );
