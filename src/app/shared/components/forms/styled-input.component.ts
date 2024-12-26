@@ -70,10 +70,6 @@ export class StyledInputComponent implements OnInit, ControlValueAccessor {
 
     if (this.control) {
       this.control.statusChanges.subscribe(() => {
-        console.log(
-          'StyledInputComponent -> ngOnInit -> this.control',
-          this.control,
-        );
         this.updateErrorMessages();
       });
     }
