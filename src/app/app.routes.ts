@@ -4,6 +4,6 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./core/brand/brand.routes').then((m) => m.routes),
+      import('@pages/brand/brand.routes').then((m) => m.routes),
   },
 ];
