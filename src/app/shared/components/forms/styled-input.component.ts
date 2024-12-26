@@ -5,7 +5,7 @@ import {
   FormControl,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { LucideAngularModule, Ban } from 'lucide-angular';
+import { LucideAngularModule, CircleX, CircleCheck } from 'lucide-angular';
 @Component({
   selector: 'styled-input',
   imports: [LucideAngularModule],
@@ -19,7 +19,8 @@ import { LucideAngularModule, Ban } from 'lucide-angular';
   ],
 })
 export class StyledInputComponent implements OnInit, ControlValueAccessor {
-  readonly ErrorIcon = Ban;
+  readonly ErrorIcon = CircleX;
+  readonly CheckIcon = CircleCheck;
 
   @Input() label?: string;
   @Input() placeholder!: string;
