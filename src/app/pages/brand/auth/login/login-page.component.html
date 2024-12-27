@@ -6,6 +6,23 @@
   </p>
 
   <form [formGroup]="loginForm" class="mt-12" (ngSubmit)="onSubmit()">
+    @if (message) {
+      <p
+        class="font-sem mb-4 text-center"
+        [class.text-success]="message.type === 'success'"
+        [class.text-error]="message.type === 'error'"
+      >
+        {{ message.text }}
+      </p>
+    }
+    @if (isLoading) {
+      <p
+        class="font-sem mb-4 text-center text-light-secondary dark:text-dark-secondary"
+      >
+        <i-lucide [img]="LoadIcon" class="inline animate-spin" /> Loading
+      </p>
+    }
+
     <section class="flex flex-col gap-4">
       <styled-input
         label="E-mail"
