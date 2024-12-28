@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { AuthService } from '@app/core/services/auth.service';
 import { LucideAngularModule, Loader } from 'lucide-angular';
+import { PasswordValidator } from '@app/core/utils/validators/password-validators';
 @Component({
   selector: 'app-login-page',
   imports: [
@@ -44,13 +45,7 @@ export class LoginPageComponent {
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(
-          /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&^])[A-Za-z\d@$!%*?&^]{8,}$/,
-        ),
-      ]),
+      password: new FormControl('', PasswordValidator),
     });
   }
 
