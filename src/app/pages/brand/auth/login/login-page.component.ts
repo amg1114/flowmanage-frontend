@@ -3,7 +3,6 @@ import { Router, RouterLink } from '@angular/router';
 import { StyledButtonComponent } from '@shared/components/typography/styled-button.component';
 import { StyledLinkComponent } from '@shared/components/typography/styled-link.component';
 import { StyledInputComponent } from '@shared/components/forms/styled-input.component';
-import { GoogleIconComponent } from '@shared/components/icons/google-icon.component';
 import {
   FormGroup,
   FormControl,
@@ -22,7 +21,6 @@ import { PasswordValidator } from '@app/core/utils/validators/password-validator
     StyledButtonComponent,
     StyledLinkComponent,
     StyledInputComponent,
-    GoogleIconComponent,
   ],
   providers: [AuthService, Router],
   templateUrl: './login-page.component.html',

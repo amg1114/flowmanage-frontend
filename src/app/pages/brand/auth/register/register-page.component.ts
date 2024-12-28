@@ -9,7 +9,6 @@ import { RouterLink } from '@angular/router';
 import { AuthService } from '@app/core/services/auth.service';
 import { PasswordValidator } from '@app/core/utils/validators/password-validators';
 import { StyledInputComponent } from '@shared/components/forms/styled-input.component';
-import { GoogleIconComponent } from '@shared/components/icons/google-icon.component';
 import { StyledButtonComponent } from '@shared/components/typography/styled-button.component';
 import { StyledLinkComponent } from '@shared/components/typography/styled-link.component';
 import { Loader, LucideAngularModule } from 'lucide-angular';
@@ -23,7 +22,6 @@ import { Loader, LucideAngularModule } from 'lucide-angular';
     StyledButtonComponent,
     StyledLinkComponent,
     StyledInputComponent,
-    GoogleIconComponent,
   ],
   providers: [AuthService],
   templateUrl: './register-page.component.html',
