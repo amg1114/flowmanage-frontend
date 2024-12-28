@@ -5,7 +5,28 @@
     <a styled-link routerLink="/login">Sign In</a>
   </p>
 
-  <form action="" class="mt-12 font-light">
+  <form
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmit()"
+    class="mt-12 font-light"
+  >
+    @if (message) {
+      <p
+        class="font-sem mb-4 text-center"
+        [class.text-success]="message.type === 'success'"
+        [class.text-error]="message.type === 'error'"
+      >
+        {{ message.text }}
+      </p>
+    }
+
+    @if (isLoading) {
+      <p
+        class="font-sem mb-4 text-center text-light-secondary dark:text-dark-secondary"
+      >
+        <i-lucide [img]="LoadIcon" class="inline animate-spin" /> Loading
+      </p>
+    }
     <section class="flex flex-col gap-4">
       <div class="flex flex-wrap gap-4 md:flex-nowrap">
         <styled-input
@@ -15,6 +36,8 @@
           type="text"
           name="firstName"
           id="firstName"
+          formControlName="firstName"
+          [control]="registerForm.get('firstName')"
         />
         <styled-input
           class="w-full"
@@ -23,8 +46,20 @@
           type="text"
           name="lastName"
           id="lastName"
+          formControlName="lastName"
+          [control]="registerForm.get('lastName')"
         />
       </div>
+
+      <styled-input
+        label="E-mail"
+        placeholder="johndoe@example.com"
+        type="email"
+        name="email"
+        id="email"
+        formControlName="email"
+        [control]="registerForm.get('email')"
+      ></styled-input>
 
       <styled-input
         label="Password?"
@@ -32,6 +67,8 @@
         type="password"
         name="password"
         id="password"
+        formControlName="password"
+        [control]="registerForm.get('password')"
       ></styled-input>
     </section>
 
@@ -42,6 +79,7 @@
         colorStyle="primary"
         variant="filled"
         class="w-full self-stretch"
+        [disabled]="isLoading || registerForm.invalid"
       >
         Create Account
       </button>
@@ -58,7 +96,7 @@
       </span>
       <button
         styled-button
-        type="submit"
+        type="button"
         colorStyle="primary"
         variant="outlined"
         colorStyle="text"

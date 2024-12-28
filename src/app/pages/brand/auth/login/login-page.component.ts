@@ -53,7 +53,7 @@ export class LoginPageComponent {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       this.isLoading = true;
-      this.authService.login(email, password).subscribe({
+      this.authService.login({ email, password }).subscribe({
         next: (response) => {
           this.message = {
             type: 'success',

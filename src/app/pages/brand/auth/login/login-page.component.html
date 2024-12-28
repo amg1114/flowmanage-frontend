@@ -15,6 +15,7 @@
         {{ message.text }}
       </p>
     }
+
     @if (isLoading) {
       <p
         class="font-sem mb-4 text-center text-light-secondary dark:text-dark-secondary"
@@ -26,7 +27,7 @@
     <section class="flex flex-col gap-4">
       <styled-input
         label="E-mail"
-        placeholder="Enter your email"
+        placeholder="johndoe@example.com"
         type="email"
         name="email"
         id="email"
@@ -58,7 +59,7 @@
         colorStyle="primary"
         variant="filled"
         class="w-full self-stretch"
-        [disabled]="!loginForm.valid"
+        [disabled]="!loginForm.valid || isLoading"
       >
         Sign In
       </button>
