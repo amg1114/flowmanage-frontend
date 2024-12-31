@@ -4,14 +4,47 @@ import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { UserLogin } from '../interfaces/user/login.interface';
 import { UserRegister } from '../interfaces/user/register.interfacer';
 import { LoginRes } from '../interfaces/responses/login-res.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { LoggedUser } from '../interfaces/user/user.interface';
+import { UsersService } from './users.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  /**
+   * A constant key used to store and retrieve the authentication token from storage.
+   * This key is used to identify the access token in the storage mechanism.
+   */
+  static AUTH_TOKEN_KEY = 'access_token';
+
   private isLoggedIn = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private jwtHelper: JwtHelperService,
+    private userService: UsersService,
+  ) {
+    const token = localStorage.getItem(AuthService.AUTH_TOKEN_KEY);
+    if (token) {
+      const isTokenExpired = this.jwtHelper.isTokenExpired(token);
+      this.isLoggedIn = !isTokenExpired;
+
+      if (this.isLoggedIn) {
+        this.getUserData().subscribe((user) => {
+          if (user) {
+            this.userService.setLoggedUser(user);
+          } else {
+            this.isLoggedIn = false;
+          }
+        });
+      }
+
+      return;
+    }
+
+    this.isLoggedIn = false;
+  }
 
   /**
    * Sends a login request to the server with the provided user credentials and retrieves an access token.
@@ -23,7 +56,7 @@ export class AuthService {
     return this.http.post<LoginRes>('/api/auth/login', data).pipe(
       map((response) => {
         this.isLoggedIn = false;
-        localStorage.setItem('access_token', response.access_token);
+        localStorage.setItem(AuthService.AUTH_TOKEN_KEY, response.access_token);
 
         return response;
       }),
@@ -55,7 +88,25 @@ export class AuthService {
     );
   }
 
+  /**
+   * Retrieves the logged-in user's data.
+   *
+   * @returns {Observable<LoggedUser | null>} An observable that emits the logged-in user's data if the user is logged in, or `null` if the user is not logged in.
+   */
+  getUserData(): Observable<LoggedUser | null> {
+    if (!this.isLoggedIn) {
+      return of(null);
+    }
+
+    return this.http.get<LoggedUser>('/api/auth/profile');
+  }
+
   isAuthenticated(): boolean {
     return this.isLoggedIn;
+  }
+
+  logout(): void {
+    this.isLoggedIn = false;
+    localStorage.removeItem(AuthService.AUTH_TOKEN_KEY);
   }
 }
