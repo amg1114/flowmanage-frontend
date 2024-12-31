@@ -5,7 +5,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@app/core/services/auth.service';
 import { PasswordValidator } from '@app/core/utils/validators/password-validators';
 import { StyledInputComponent } from '@shared/components/forms/styled-input.component';
@@ -33,7 +33,14 @@ export class RegisterPageComponent {
   isLoading = false;
   registerForm!: FormGroup;
   message: { type: 'success' | 'error'; text: string } | null = null;
-  constructor(private authService: AuthService) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+  ) {
+    if (authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
+
     this.registerForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', PasswordValidator),

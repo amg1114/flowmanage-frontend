@@ -35,11 +35,11 @@ export class LoginPageComponent {
 
   constructor(
     private authService: AuthService,
-    //private router: Router,
+    private router: Router,
   ) {
-    //if (authService.isAuthenticated()) {
-    //this.router.navigate(['/']);
-    //}
+    if (authService.isAuthenticated()) {
+      this.router.navigate(['/dashboard']);
+    }
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
