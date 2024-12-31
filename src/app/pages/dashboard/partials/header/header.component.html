@@ -1,0 +1,52 @@
+<header
+  class="ml-auto mt-5 flex w-full items-center gap-4 rounded bg-light-secondary/30 px-5 py-2.5 dark:bg-dark-secondary/30"
+>
+  <figure>
+    <span class="sr-only">Header Logo</span>
+    <img
+      src="logo-light.png"
+      alt="logo"
+      width="28"
+      height="45"
+      class="object-cover dark:hidden"
+    />
+    <img
+      src="logo-dark.png"
+      alt="logo"
+      width="28"
+      height="45"
+      class="hidden object-cover dark:block"
+    />
+  </figure>
+
+  <nav
+    class="flex flex-col uppercase text-light-primary dark:text-dark-primary"
+  >
+    <span class="sr-only">Workflows Nav</span>
+    <span class="text-xs font-light">Dashboard</span>
+    <span class="font-semibold">WORKFLOW NAME</span>
+  </nav>
+  <nav class="relative ml-auto flex gap-4">
+    <span class="sr-only">User Nav</span>
+    <div class="flex flex-col items-end justify-center">
+      <a
+        routerLink="/settings"
+        class="text-light-text! dark:text-dark-text! font-roboto text-xl uppercase"
+        variant="ghosted"
+      >
+        {{ LoggedUser.firstName }}
+        {{ LoggedUser.lastName }}
+        <span class="absolute inset-0"></span>
+      </a>
+      <span class="text-sm font-light">{{ LoggedUser.email }}</span>
+    </div>
+    <figure
+      class="relative flex aspect-square min-w-12 shrink-0 items-center justify-center self-stretch rounded bg-light-primary dark:bg-light-primary"
+    >
+      <span class="font-roboto text-dark-text">
+        {{ LoggedUser.firstName[0].toUpperCase()
+        }}{{ LoggedUser.lastName[0].toUpperCase() }}
+      </span>
+    </figure>
+  </nav>
+</header>
