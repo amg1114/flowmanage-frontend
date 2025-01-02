@@ -6,7 +6,7 @@ export default {
       primary: { DEFAULT: '#3A7DA6', dark: '#599BC5' },
       secondary: { DEFAULT: '#84C7F0', dark: '#0F517B' },
       charcoal: { DEFAULT: '#343536', dark: '#EBF0F4' },
-      base: { DEFAULT: '#F4F9FB', dark: '#04090B' },
+      canvas: { DEFAULT: '#F4F9FB', dark: '#04090B' },
       accent: { DEFAULT: '#7FBDB1', dark: '#428074' },
       error: '#d30000',
       success: '#007a37',

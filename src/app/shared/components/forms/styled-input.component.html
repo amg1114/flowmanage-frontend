@@ -22,7 +22,7 @@
     [placeholder]="placeholder"
     [value]="value"
     (input)="onInput($event)"
-    class="border-b-2 border-b-light-text/50 bg-transparent pb-2 text-base outline-none transition-all placeholder:font-light focus:border-b-2 focus:border-b-light-primary dark:border-b-light-text dark:focus:border-b-dark-primary"
+    class="border-b-text/50 focus:border-b-primary dark:border-b-charcoal dark:focus:border-b-primary-dark border-b-2 bg-transparent pb-2 text-base outline-none transition-all placeholder:font-light focus:border-b-2"
     [class.!border-b-error]="errorMessages.length > 0"
     [class.!border-b-success]="value && !errorMessages.length"
   />

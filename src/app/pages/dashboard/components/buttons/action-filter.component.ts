@@ -9,7 +9,7 @@ import { LucideAngularModule, Filter } from 'lucide-angular';
     <lucide-angular
       [img]="FilterIcon"
       size="18"
-      class="fill-light-accent dark:fill-dark-accent"
+      class="fill-accent dark:fill-accent-dark"
     ></lucide-angular>
   </button>`,
   styles: ``,
