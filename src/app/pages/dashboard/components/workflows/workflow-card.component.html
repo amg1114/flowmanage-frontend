@@ -1,0 +1,30 @@
+<article
+  class="relative flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 border-light-secondary bg-white p-4 transition-colors dark:border-dark-secondary dark:bg-white/10"
+  [routerLink]="['/dashboard', workflow.id]"
+>
+  <header class="flex w-full flex-wrap items-start justify-between gap-4">
+    <figure class="w-fit rounded bg-light-secondary p-1 dark:bg-dark-secondary">
+      <i-lucide [img]="WorkflowIcon" size="42"></i-lucide>
+    </figure>
+    <div
+      class="mb-2 flex w-fit gap-3 rounded bg-light-accent px-1 py-0.5 dark:bg-dark-accent"
+    >
+      <span class="inline-flex items-center">
+        <i-lucide [img]="UsersIcon" size="16"></i-lucide> 3
+      </span>
+      <span class="inline-flex items-center">
+        <i-lucide [img]="ProjectsIcon" size="16"></i-lucide> 3
+      </span>
+      <span class="inline-flex items-center">
+        <i-lucide [img]="TasksIcon" size="16"></i-lucide> 3
+      </span>
+    </div>
+  </header>
+  <body class="w-full pt-2">
+    <h4 class="leading-none! text-base font-semibold uppercase">
+      {{ workflow.title }}
+    </h4>
+    <p class="text-sm font-light">{{ workflow.description }}</p>
+  </body>
+  <span class="absolute inset-0 cursor-pointer"></span>
+</article>

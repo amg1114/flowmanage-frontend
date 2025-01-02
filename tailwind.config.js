@@ -17,6 +17,8 @@ export default {
       error: '#d30000',
       success: '#007a37',
       transparent: 'transparent',
+      white: '#ffffff',
+      gray: '#f5f5f5',
     },
     fontFamily: {
       roboto: ['Roboto Condensed', 'sans-serif'],

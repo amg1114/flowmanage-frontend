@@ -5,7 +5,10 @@
   >
     <i-lucide [img]="LoaderIcon" class="h-16 w-16 animate-spin"></i-lucide>
   </span>
-  <div class="relative" *ngIf="!loading && loggedUser">
+  <div
+    class="relative flex h-screen flex-col gap-8"
+    *ngIf="!loading && loggedUser"
+  >
     <dashboard-header [loggedUser]="loggedUser" />
     <router-outlet></router-outlet>
   </div>
