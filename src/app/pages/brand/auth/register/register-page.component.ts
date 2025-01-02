@@ -62,6 +62,10 @@ export class RegisterPageComponent {
               text: 'Registration successful!',
             };
             this.isLoading = false;
+            setTimeout(() => {
+              this.message = null;
+              this.router.navigate(['/login']);
+            }, 2000);
           },
           error: (error) => {
             this.message = {

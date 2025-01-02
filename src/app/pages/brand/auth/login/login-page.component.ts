@@ -60,7 +60,7 @@ export class LoginPageComponent {
           this.isLoading = false;
           setTimeout(() => {
             this.message = null;
-            //this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
           }, 2000);
         },
         error: (error) => {
