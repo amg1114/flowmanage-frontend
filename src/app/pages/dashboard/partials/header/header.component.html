@@ -1,5 +1,5 @@
 <header
-  class="ml-auto mt-5 flex w-full items-center gap-4 rounded bg-light-secondary/30 p-2.5 md:px-5 dark:bg-dark-secondary/30"
+  class="bg-secondary/30 dark:bg-secondary-dark/30 ml-auto mt-5 flex w-full items-center gap-4 rounded p-2.5 md:px-5"
   *ngIf="loggedUser"
 >
   <figure>
@@ -23,7 +23,7 @@
   </figure>
 
   <nav
-    class="flex flex-col font-light uppercase text-light-primary dark:text-dark-primary"
+    class="text-primary dark:text-primary-dark flex flex-col font-light uppercase"
   >
     <span class="sr-only">Workflows Nav</span>
 
@@ -43,7 +43,7 @@
     <div class="hidden flex-col items-end justify-center md:flex">
       <a
         routerLink="/settings"
-        class="text-light-text! dark:text-dark-text! font-roboto text-xl uppercase"
+        class="text-text! dark:text-charcoal-dark! font-roboto text-xl uppercase"
         variant="ghosted"
       >
         {{ loggedUser.firstName }}
@@ -54,9 +54,9 @@
     </div>
 
     <figure
-      class="relative flex aspect-square min-w-12 shrink-0 items-center justify-center self-stretch rounded bg-light-primary dark:bg-light-primary"
+      class="bg-primary dark:bg-primary relative flex aspect-square min-w-12 shrink-0 items-center justify-center self-stretch rounded"
     >
-      <span class="font-roboto text-dark-text">
+      <span class="text-charcoal-dark font-roboto">
         {{ loggedUser.firstName[0].toUpperCase()
         }}{{ loggedUser.lastName[0].toUpperCase() }}
       </span>

@@ -14,7 +14,7 @@ import { DashboardConfigService } from '@app/core/services/dashboard-config.serv
   template: `
     <main class="container">
       <span
-        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-light-secondary dark:text-dark-secondary"
+        class="text-secondary dark:text-secondary-dark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
         *ngIf="loading"
       >
         <i-lucide [img]="LoaderIcon" class="h-16 w-16 animate-spin"></i-lucide>

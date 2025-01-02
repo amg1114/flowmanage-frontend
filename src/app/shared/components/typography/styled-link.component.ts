@@ -28,29 +28,29 @@ export class StyledLinkComponent {
   readonly styleClasses = {
     filled: {
       primary:
-        'text-dark-text bg-light-primary dark:bg-dark-primary hover:bg-transparent hover:text-light-primary dark:hover:text-dark-primary',
+        'text-charcoal-dark bg-primary dark:bg-primary-dark hover:bg-transparent hover:text-primary dark:hover:text-primary-dark',
       secondary:
-        'text-dark-text bg-light-secondary dark:bg-dark-secondary hover:bg-transparent hover:text-light-secondary dark:hover:text-dark-secondary',
+        'text-charcoal-dark bg-secondary dark:bg-secondary-dark hover:bg-transparent hover:text-secondary dark:hover:text-secondary-dark',
       accent:
-        'text-dark-text bg-light-accent dark:bg-dark-accent hover:bg-transparent hover:text-light-accent dark:hover:text-dark-accent',
+        'text-charcoal-dark bg-accent dark:bg-accent-dark hover:bg-transparent hover:text-accent dark:hover:text-accent-dark',
     },
 
     outlined: {
       primary:
-        'border-2 border-light-primary dark:border-dark-primary text-light-primary dark:text-dark-primary hover:bg-light-primary dark:hover:bg-dark-primary hover:text-dark-text',
+        'border-2 border-primary dark:border-primary-dark text-primary dark:text-primary-dark hover:bg-primary dark:hover:bg-primary-dark hover:text-charcoal-dark',
       secondary:
-        'border-2 border-light-secondary dark:border-dark-secondary text-light-secondary dark:text-dark-secondary hover:bg-light-secondary dark:hover:bg-dark-secondary hover:text-dark-text',
+        'border-2 border-secondary dark:border-secondary-dark text-secondary dark:text-secondary-dark hover:bg-secondary dark:hover:bg-secondary-dark hover:text-charcoal-dark',
       accent:
-        'border-2 border-light-accent dark:border-dark-accent text-light-accent dark:text-dark-accent hover:bg-light-accent dark:hover:bg-dark-accent hover:text-dark-text',
+        'border-2 border-accent dark:border-accent-dark text-accent dark:text-accent-dark hover:bg-accent dark:hover:bg-accent-dark hover:text-charcoal-dark',
     },
 
     ghosted: {
       primary:
-        'd-inline text-light-primary underline hover:text-light-secondary dark:hover:text-dark-secondary',
+        'd-inline text-primary underline hover:text-secondary dark:hover:text-secondary-dark',
       secondary:
-        'd-inline text-light-secondary dark:text-dark-secondary underline hover:text-light-secondary dark:hover:text-dark-secondary',
+        'd-inline text-secondary dark:text-secondary-dark underline hover:text-secondary dark:hover:text-secondary-dark',
       accent:
-        'd-inline text-light-accent dark:text-light-accent underline hover:text-light-secondary dark:hover:text-dark-secondary',
+        'd-inline text-accent dark:text-accent underline hover:text-secondary dark:hover:text-secondary-dark',
     },
   };
 }
