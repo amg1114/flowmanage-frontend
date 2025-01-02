@@ -30,14 +30,8 @@ export class AuthService {
       const isTokenExpired = this.jwtHelper.isTokenExpired(token);
       this.isLoggedIn = !isTokenExpired;
 
-      if (this.isLoggedIn) {
-        this.getUserData().subscribe((user) => {
-          if (user) {
-            this.userService.setLoggedUser(user);
-          } else {
-            this.isLoggedIn = false;
-          }
-        });
+      if (!isTokenExpired) {
+        this.setLoggedUser();
       }
 
       return;
@@ -55,8 +49,10 @@ export class AuthService {
   login(data: UserLogin): Observable<LoginRes> {
     return this.http.post<LoginRes>('/api/auth/login', data).pipe(
       map((response) => {
-        this.isLoggedIn = false;
         localStorage.setItem(AuthService.AUTH_TOKEN_KEY, response.access_token);
+
+        this.isLoggedIn = true;
+        this.setLoggedUser();
 
         return response;
       }),
@@ -76,9 +72,10 @@ export class AuthService {
   register(data: UserRegister): Observable<LoginRes> {
     return this.http.post<LoginRes>('/api/auth/register', data).pipe(
       map((response) => {
-        this.isLoggedIn = true;
-        console.log({ response });
         localStorage.setItem('access_token', response.access_token);
+
+        this.isLoggedIn = true;
+        this.setLoggedUser();
         return response;
       }),
       catchError((error) => {
@@ -86,6 +83,19 @@ export class AuthService {
         return throwError(() => error);
       }),
     );
+  }
+
+  setLoggedUser(): void {
+    if (this.isLoggedIn) {
+      this.getUserData().subscribe((userData) => {
+        if (userData) {
+          this.userService.setLoggedUser(userData);
+          return;
+        }
+
+        this.isLoggedIn = false;
+      });
+    }
   }
 
   /**

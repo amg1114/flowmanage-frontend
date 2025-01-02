@@ -1,5 +1,6 @@
 <header
   class="ml-auto mt-5 flex w-full items-center gap-4 rounded bg-light-secondary/30 p-2.5 md:px-5 dark:bg-dark-secondary/30"
+  *ngIf="loggedUser"
 >
   <figure>
     <span class="sr-only">Header Logo</span>
@@ -22,12 +23,18 @@
   </figure>
 
   <nav
-    class="flex flex-col uppercase text-light-primary dark:text-dark-primary"
+    class="flex flex-col font-light uppercase text-light-primary dark:text-dark-primary"
   >
     <span class="sr-only">Workflows Nav</span>
 
-    <span class="text-xs font-light">Dashboard</span>
-    <span class="font-semibold">WORKFLOW NAME</span>
+    <span
+      [class.text-xs]="selectedWorkflow"
+      [class.font-semibold]="!selectedWorkflow"
+      >Dashboard</span
+    >
+    <span class="font-semibold" *ngIf="selectedWorkflow">{{
+      selectedWorkflow.title
+    }}</span>
   </nav>
 
   <nav class="relative ml-auto flex gap-4">
@@ -39,19 +46,19 @@
         class="text-light-text! dark:text-dark-text! font-roboto text-xl uppercase"
         variant="ghosted"
       >
-        {{ LoggedUser.firstName }}
-        {{ LoggedUser.lastName }}
+        {{ loggedUser.firstName }}
+        {{ loggedUser.lastName }}
         <span class="absolute inset-0"></span>
       </a>
-      <span class="text-sm font-light">{{ LoggedUser.email }}</span>
+      <span class="text-sm font-light">{{ loggedUser.email }}</span>
     </div>
 
     <figure
       class="relative flex aspect-square min-w-12 shrink-0 items-center justify-center self-stretch rounded bg-light-primary dark:bg-light-primary"
     >
       <span class="font-roboto text-dark-text">
-        {{ LoggedUser.firstName[0].toUpperCase()
-        }}{{ LoggedUser.lastName[0].toUpperCase() }}
+        {{ loggedUser.firstName[0].toUpperCase()
+        }}{{ loggedUser.lastName[0].toUpperCase() }}
       </span>
     </figure>
   </nav>
