@@ -17,6 +17,13 @@ export const routes: Routes = [
             './workflows/workflow-listing/workflow-listing.component'
           ).then((m) => m.WorkflowListingComponent),
       },
+      {
+        path: ':slug',
+        loadComponent: () =>
+          import('./workflows/workflow-detail/workflow-detail.component').then(
+            (m) => m.WorkflowDetailComponent,
+          ),
+      },
     ],
   },
 ];
