@@ -1,1 +1,28 @@
-<p>workflows works!</p>
+@if (!loggedUser) {
+  <p
+    class="font-sem mb-4 text-center text-light-secondary dark:text-dark-secondary"
+  >
+    <i-lucide [img]="LoadIcon" class="inline animate-spin" /> Loading
+  </p>
+} @else {
+  <header class="flex items-center gap-2">
+    <h3 class="mr-2 font-roboto text-2xl font-semibold uppercase">
+      My workflows
+    </h3>
+    <board-action-info />
+    <board-action-create />
+    <board-action-filter />
+  </header>
+  @if (loggedUser.workflows.length) {
+    <section class="py-8">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+        @for (userWorkflow of loggedUser.workflows; track $index) {
+          <board-workflow-card
+            [workflow]="userWorkflow.workflow"
+            [userRole]="userWorkflow.role"
+          />
+        }
+      </div>
+    </section>
+  }
+}

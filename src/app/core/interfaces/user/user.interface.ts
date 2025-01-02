@@ -1,3 +1,4 @@
+import { UserRoles } from '@app/core/utils/constants/user-roles.constants';
 import { Workflow } from '../workflows/workflow.interface';
 
 export interface LoggedUser {
@@ -14,6 +15,6 @@ export interface UserWorkflows {
   id: number;
   createdAt: Date;
   updatedAt: Date;
-  role: string;
+  role: UserRoles;
   workflow: Workflow;
 }
