@@ -5,6 +5,7 @@ export interface Workflow {
   createdAt: Date;
   updatedAt: Date;
   title: string;
+  slug: string;
   description: null | string;
   color: ResourceColors;
 }
