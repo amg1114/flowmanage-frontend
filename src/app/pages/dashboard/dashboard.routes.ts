@@ -18,6 +18,30 @@ export const routes: Routes = [
           ).then((m) => m.WorkflowListingComponent),
       },
       {
+        path: 'workflows/create',
+        loadComponent: () =>
+          import('./workflows/workflow-create/workflow-create.component').then(
+            (m) => m.WorkflowCreateComponent,
+          ),
+        children: [
+          {
+            path: 'description',
+            loadComponent: () =>
+              import(
+                '@pages/dashboard/workflows/workflow-create/components/workflow-description/workflow-description.component'
+              ).then((m) => m.WorkflowDescriptionComponent),
+          },
+          {
+            path: 'status',
+            loadComponent: () =>
+              import(
+                '@pages/dashboard/workflows/workflow-create/components/workflow-status/workflow-status.component'
+              ).then((m) => m.WorkflowStatusComponent),
+          },
+          { path: '**', redirectTo: 'description' },
+        ],
+      },
+      {
         path: ':slug',
         loadComponent: () =>
           import('./workflows/workflow-detail/workflow-detail.component').then(

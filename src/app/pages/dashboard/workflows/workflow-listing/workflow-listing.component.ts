@@ -7,6 +7,7 @@ import { LoggedUser } from '@app/core/interfaces/user/user.interface';
 import { UsersService } from '@app/core/services/users.service';
 import { LucideAngularModule, Loader } from 'lucide-angular';
 import { WorkflowCardComponent } from '../../components/workflows/workflow-card.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'dashboard-workflow-listing',
@@ -16,6 +17,7 @@ import { WorkflowCardComponent } from '../../components/workflows/workflow-card.
     ActionInfoComponent,
     LucideAngularModule,
     WorkflowCardComponent,
+    RouterLink,
   ],
   templateUrl: './workflow-listing.component.html',
   styles: ``,

@@ -34,6 +34,7 @@ export class WorkflowCardComponent {
 
   @Input() workflow!: Workflow;
   @Input() userRole!: UserRoles | string;
+  @Input() preview = false;
 
   cardClassList =
     'relative flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 p-4 transition-colors';
