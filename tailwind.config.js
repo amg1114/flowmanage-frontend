@@ -7,7 +7,11 @@ export default {
       secondary: { DEFAULT: '#84C7F0', dark: '#0F517B' },
       charcoal: { DEFAULT: '#343536', dark: '#EBF0F4' },
       canvas: { DEFAULT: '#F4F9FB', dark: '#04090B' },
-      accent: { DEFAULT: '#7FBDB1', dark: '#428074' },
+      accent: {
+        DEFAULT: '#7FBDB1',
+        dark: '#428074',
+        canvas: { DEFAULT: '#d1e7e5', dark: '#172d2b' },
+      },
       error: '#d30000',
       success: '#007a37',
       transparent: 'transparent',
