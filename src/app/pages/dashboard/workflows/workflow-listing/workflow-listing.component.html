@@ -1,5 +1,5 @@
 @if (!loggedUser) {
-  <p class="font-sem text-secondary dark:text-secondary-dark mb-4 text-center">
+  <p class="font-sem mb-4 text-center text-secondary dark:text-secondary-dark">
     <i-lucide [img]="LoadIcon" class="inline animate-spin" /> Loading
   </p>
 } @else {
@@ -7,7 +7,11 @@
     <h3 class="mr-2 font-roboto text-2xl font-semibold uppercase">
       My workflows
     </h3>
-    <board-action-info />
+    <board-action-info
+      >Workflows in FlowManage represent structured sequences of tasks designed
+      to streamline processes, enhance collaboration, and ensure efficiency in
+      project management.</board-action-info
+    >
     <board-action-create />
     <board-action-filter />
   </header>
