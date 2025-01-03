@@ -1,0 +1,25 @@
+<div class="flex flex-wrap-reverse items-end gap-8">
+  <section class="flex-1">
+    <header class="w-full">
+      <nav class="grid w-full grid-cols-3 gap-4">
+        <div
+          *ngFor="let route of routes"
+          class="relative rounded bg-secondary/30 p-2 text-center text-xl uppercase dark:bg-secondary-dark/30"
+          routerLinkActive="!bg-accent/30 dark:bg-accent-dark/30"
+        >
+          <a
+            [routerLink]="route.path"
+            class="flex items-center justify-center gap-4 font-roboto font-normal"
+          >
+            <i-lucide [img]="route.icon" size="" />
+            {{ route.label }}</a
+          >
+        </div>
+      </nav>
+    </header>
+    <router-outlet />
+  </section>
+  <aside class="block min-w-96 shrink-0">
+    <board-workflow-card [workflow]="workflow" [preview]="true" />
+  </aside>
+</div>
