@@ -6,5 +6,11 @@
         "ngClass",
         "class:list",
         "routerLinkActive",
-    ]
+    ],
+    "angular-schematics.schematicsDefaultOptions": {
+        "angular-*": {
+            "externalTemplate": true,
+            "skipStyle": true
+        }
+    }
 }
