@@ -1,0 +1,35 @@
+<fieldset>
+  <legend class="">Select a color</legend>
+  @if (errorMessages.length > 0) {
+    <span class="flex gap-1 text-xs font-light !leading-none text-error">
+      {{ errorMessages.join(', ') }}.
+    </span>
+  }
+
+  <div class="grid grid-cols-4 gap-2">
+    <div
+      class="overflow-hidden rounded text-white"
+      *ngFor="let color of colors"
+    >
+      <label
+        [for]="color + '-color-ckb'"
+        class="flex aspect-square w-full cursor-pointer items-center justify-center"
+        [class]="bgColors[color]"
+      >
+        <i-lucide
+          [img]="CheckIcon"
+          [class.hidden]="value !== color"
+          [class.block]="value === color"
+        ></i-lucide>
+      </label>
+      <input
+        type="radio"
+        [value]="value"
+        [id]="color + '-color-ckb'"
+        class="hidden"
+        [checked]="value === color"
+        (change)="selectOption(color)"
+      />
+    </div>
+  </div>
+</fieldset>
