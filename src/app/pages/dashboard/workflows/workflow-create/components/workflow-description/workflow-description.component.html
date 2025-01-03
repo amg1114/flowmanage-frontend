@@ -1,1 +1,33 @@
-<p>workflow-description works!</p>
+<form
+  [formGroup]="workflowForm"
+  class="grid grid-cols-1 gap-4 py-8 md:grid-cols-3"
+  (ngSubmit)="onSubmit()"
+>
+  <section class="col-span-2 flex flex-col gap-4">
+    <styled-input
+      id="title"
+      name="title"
+      label="Title"
+      placeholder="Enter title"
+      formControlName="title"
+      [control]="workflowForm.get('title')"
+    />
+    <styled-text-area
+      id="description"
+      name="description"
+      label="Description"
+      placeholder="Enter description"
+      formControlName="description"
+      [control]="workflowForm.get('description')"
+    />
+  </section>
+
+  <color-picker formControlName="color" [control]="workflowForm.get('color')" />
+
+  <footer class="col-span-full mt-8 flex items-center justify-end gap-4">
+    <button styled-button variant="ghosted" (click)="onReset()">Discard</button>
+    <button [disabled]="workflowForm.invalid" type="submit" styled-button>
+      Continue
+    </button>
+  </footer>
+</form>

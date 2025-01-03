@@ -1,14 +1,32 @@
 import { Injectable } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { workflowPlaceHolder } from '@app/core/utils/forms/workflows/create-workflow';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WorkflowsService {
-  constructor() {}
+  static WORKFLOW_DRAFT_KEY = 'workflow-draft';
 
-  newWorkflow: FormGroup = new FormGroup({
-    title: new FormControl('Workflow Title', [Validators.required]),
-    description: new FormControl('Workflow Description', [Validators.required]),
-  });
+  newWorkflow: FormGroup = workflowPlaceHolder;
+
+  constructor() {
+    const draft = localStorage.getItem(WorkflowsService.WORKFLOW_DRAFT_KEY);
+    if (draft) {
+      this.newWorkflow.patchValue(JSON.parse(draft));
+    }
+  }
+
+  storeWorkflowDraft(): void {
+    this.newWorkflow.markAllAsTouched();
+    localStorage.setItem(
+      WorkflowsService.WORKFLOW_DRAFT_KEY,
+      JSON.stringify(this.newWorkflow.getRawValue()),
+    );
+  }
+
+  discardWorkflow(): void {
+    this.newWorkflow.reset();
+    localStorage.removeItem(WorkflowsService.WORKFLOW_DRAFT_KEY);
+  }
 }

@@ -10,7 +10,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 export class StyledButtonComponent {
   @Input() variant: 'outlined' | 'filled' | 'ghosted' = 'filled';
   @Input() colorStyle: 'primary' | 'secondary' | 'accent' | 'text' = 'primary';
-  @Input() type: 'button' | 'submit' = 'button';
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() class: string = '';
   @Input() control?: FormControl | AbstractControl | null;
 

@@ -1,12 +1,12 @@
 <fieldset>
-  <legend class="">Select a color</legend>
+  <legend class="mb-2">Select a color</legend>
   @if (errorMessages.length > 0) {
     <span class="flex gap-1 text-xs font-light !leading-none text-error">
       {{ errorMessages.join(', ') }}.
     </span>
   }
 
-  <div class="grid grid-cols-10 gap-4">
+  <div class="grid grid-cols-5 gap-4">
     <div
       class="overflow-hidden rounded text-white"
       *ngFor="let color of colors"
