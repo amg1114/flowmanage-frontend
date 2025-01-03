@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { StyledButtonComponent } from '@shared/components/typography/styled-button.component';
 import { StyledLinkComponent } from '@shared/components/typography/styled-link.component';
-import { StyledInputComponent } from '@shared/components/forms/styled-input.component';
+import { StyledInputComponent } from '@app/shared/components/forms/styled-input/styled-input.component';
 import {
   FormGroup,
   FormControl,
