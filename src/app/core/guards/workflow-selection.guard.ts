@@ -11,7 +11,7 @@ export const workflowSelectionGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const dashboardConfigService = inject(DashboardConfigService);
 
-  if (state.url === '/dashboard/workflows') {
+  if (state.url !== '/dashboard') {
     return of(true);
   }
 
