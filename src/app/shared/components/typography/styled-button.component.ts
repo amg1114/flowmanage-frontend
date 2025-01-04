@@ -52,7 +52,7 @@ export class StyledButtonComponent {
   get buttonClass() {
     return (
       this.styleClasses[this.variant][this.colorStyle] +
-      ' rounded transition-colors duration-300 disabled:pointer-events-none' +
+      ' rounded transition-colors duration-300 disabled:pointer-events-none disabled:bg-placeholder dark:disabled:bg-placeholder' +
       (this.variant !== 'ghosted' ? ' px-4 py-2' : '') +
       (this.class ? ' ' + this.class : '')
     );
