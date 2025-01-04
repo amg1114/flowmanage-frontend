@@ -6,6 +6,9 @@ import {
   Plus,
   Trash2,
   GripVertical,
+  Clock,
+  CheckSquare,
+  Bolt,
 } from 'lucide-angular';
 
 @Component({
@@ -31,9 +34,9 @@ export class StatusPreviewComponent {
   };
 
   readonly statusIcons: Record<WorkflowStatusType, any> = {
-    [WorkflowStatusType.INACTIVE]: Plus,
-    [WorkflowStatusType.ACTIVE]: Plus,
-    [WorkflowStatusType.COMPLETED]: Plus,
+    [WorkflowStatusType.INACTIVE]: Clock,
+    [WorkflowStatusType.ACTIVE]: Bolt,
+    [WorkflowStatusType.COMPLETED]: CheckSquare,
   };
 
   constructor() {}
