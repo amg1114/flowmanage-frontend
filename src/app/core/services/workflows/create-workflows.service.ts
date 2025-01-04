@@ -85,11 +85,11 @@ export class CreateWorkflowsService {
   }
 
   removeStatus(status: any): void {
-    let statuses = this.workflowStatuses.getRawValue();
-    statuses = statuses.filter((s: any) => s.name !== status.name);
+    const index = this.workflowStatuses
+      .getRawValue()
+      .findIndex((s: Partial<WorkflowStatus>) => s.name === status.name);
 
-    this.workflowStatuses.clear();
-    statuses.forEach((s: any) => this.addStatus(s));
+    this.workflowStatuses.removeAt(index);
   }
 
   storeWorkflowDraft(): void {
