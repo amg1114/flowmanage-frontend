@@ -1,0 +1,21 @@
+<article>
+  <header class="-mr-1 mb-0.5 flex items-center justify-end">
+    <button
+      class="text-placeholder/40 dark:text-placeholder-dark/40 hover:bg-placeholder/30 dark:hover:bg-placeholder-dark/30 rounded bg-transparent p-1 transition-colors hover:text-charcoal dark:hover:text-charcoal-dark"
+    >
+      <i-lucide [img]="DeleteIcon" size="12" />
+    </button>
+    <button
+      class="text-placeholder/40 dark:text-placeholder-dark/40 hover:bg-placeholder/30 dark:hover:bg-placeholder-dark/30 rounded bg-transparent p-1 transition-colors hover:text-charcoal dark:hover:text-charcoal-dark"
+    >
+      <i-lucide [img]="DragIcon" size="12" />
+    </button>
+  </header>
+  <div class="rounded p-2" [class]="statusBackground[status.type]">
+    <h4 class="mb-4 flex items-center gap-1 font-normal uppercase">
+      <i-lucide [img]="statusIcons[status.type]" size="20" />
+      {{ status.name }}
+    </h4>
+    <p>{{ status.description }}</p>
+  </div>
+</article>
