@@ -30,4 +30,8 @@ export class WorkflowStatusComponent {
   get statuses(): WorkflowStatus[] {
     return this.workflowForm.get('status')?.getRawValue() as WorkflowStatus[];
   }
+
+  onDeleteStatus(status: WorkflowStatus): void {
+    this.workflowsService.removeStatus(status);
+  }
 }

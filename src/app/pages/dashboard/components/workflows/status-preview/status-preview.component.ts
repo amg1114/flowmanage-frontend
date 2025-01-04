@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
 import { WorkflowStatusType } from '@app/core/utils/status';
 import {
@@ -20,6 +20,9 @@ export class StatusPreviewComponent {
 
   @Input() status!: WorkflowStatus;
 
+  @Output('deletedStatus')
+  deleted = new EventEmitter<WorkflowStatus>();
+
   readonly statusBackground: Record<WorkflowStatusType, string> = {
     [WorkflowStatusType.INACTIVE]:
       'bg-placeholder/30 dark:bg-placeholder-dark/30',
@@ -32,5 +35,10 @@ export class StatusPreviewComponent {
     [WorkflowStatusType.ACTIVE]: Plus,
     [WorkflowStatusType.COMPLETED]: Plus,
   };
+
   constructor() {}
+
+  onDeleted(): void {
+    this.deleted.emit(this.status);
+  }
 }
