@@ -2,8 +2,11 @@ import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
 import { getRandomResourceColor } from '@app/core/utils/colors';
-import { statusPlaceHolder } from '@app/core/utils/forms/status/create-status';
-import { workflowPlaceHolder } from '@app/core/utils/forms/workflows/create-workflow';
+import {
+  statusPlaceHolder,
+  requireAllStatusTypesValidator,
+  uniqueStatusesValidator,
+} from '@app/core/utils/forms/status/create-status';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +14,17 @@ import { workflowPlaceHolder } from '@app/core/utils/forms/workflows/create-work
 export class CreateWorkflowsService {
   static WORKFLOW_DRAFT_KEY = 'workflow-draft';
 
-  newWorkflow: FormGroup;
+  newWorkflow!: FormGroup;
 
   constructor(private fb: FormBuilder) {
+    this.buildForm();
+  }
+
+  get workflowStatuses(): FormArray {
+    return this.newWorkflow.get('status') as FormArray;
+  }
+
+  buildForm(): void {
     this.newWorkflow = this.fb.group({
       title: [
         '',
@@ -25,14 +36,13 @@ export class CreateWorkflowsService {
       ],
       description: ['', [Validators.minLength(10), Validators.maxLength(120)]],
       color: ['', Validators.required],
-      status: this.fb.array([]),
+      status: this.fb.array(
+        [],
+        [requireAllStatusTypesValidator, uniqueStatusesValidator],
+      ),
     });
 
     this.addDefaultData();
-  }
-
-  get workflowStatuses(): FormArray {
-    return this.newWorkflow.get('status') as FormArray;
   }
 
   addDefaultData(): void {
@@ -48,10 +58,10 @@ export class CreateWorkflowsService {
     }
 
     this.newWorkflow.patchValue({ color: getRandomResourceColor() });
-    statusPlaceHolder.forEach((status) => this.addStatus(status));
+    statusPlaceHolder.forEach((status) => this.addStatus(status, false));
   }
 
-  addStatus(status: Partial<WorkflowStatus>): void {
+  addStatus(status: Partial<WorkflowStatus>, store = true): void {
     this.workflowStatuses.push(
       this.fb.group({
         id: [status.id],
@@ -92,7 +102,11 @@ export class CreateWorkflowsService {
   }
 
   discardWorkflow(): void {
-    this.newWorkflow.reset();
     localStorage.removeItem(CreateWorkflowsService.WORKFLOW_DRAFT_KEY);
+
+    this.newWorkflow.reset();
+    this.workflowStatuses.clear();
+
+    this.buildForm();
   }
 }
