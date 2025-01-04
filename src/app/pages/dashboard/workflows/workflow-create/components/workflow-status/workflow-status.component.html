@@ -3,7 +3,7 @@
     <h3 class="font-roboto text-xl font-normal uppercase">Workflows States</h3>
 
     <button
-      class="bg-placeholder/30 dark:bg-placeholder-dark/30 hover:bg-placeholder dark:hover:bg-placeholder-dark flex items-center gap-1 rounded p-1 text-xs uppercase transition-colors"
+      class="flex items-center gap-1 rounded bg-placeholder/30 p-1 text-xs uppercase transition-colors hover:bg-placeholder dark:bg-placeholder-dark/30 dark:hover:bg-placeholder-dark"
     >
       <i-lucide [img]="CreateIcon" size="10" />
       Pending State
@@ -25,7 +25,7 @@
 
     @if (errorMessages.length) {
       <ul
-        class="dark:bg-error-dark/10 mt-4 block w-full rounded-e border-l-2 border-error bg-error/10 p-2"
+        class="mt-4 block w-full rounded-e border-l-2 border-error bg-error/10 p-2 dark:bg-error-dark/10"
       >
         <li *ngFor="let message of errorMessages" class="text-xs text-error">
           {{ message }}
@@ -40,5 +40,13 @@
       [status]="status"
       (deletedStatus)="onDeleteStatus($event)"
     />
+
+    @if (!statuses.length) {
+      <p
+        class="col-span-full rounded border-2 border-dashed border-placeholder/30 p-4 text-center text-placeholder dark:border-placeholder-dark/30"
+      >
+        No statuses added yet.
+      </p>
+    }
   </section>
 </section>

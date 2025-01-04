@@ -25,8 +25,11 @@
   <color-picker formControlName="color" [control]="workflowForm.get('color')" />
 
   <footer class="col-span-full mt-8 flex items-center justify-end gap-4">
-    <button styled-button variant="ghosted" (click)="onReset()">Discard</button>
-    <button [disabled]="workflowForm.invalid" type="submit" styled-button>
+    <button styled-button variant="outlined" (click)="onReset()">
+      Discard
+    </button>
+
+    <button [disabled]="!formValid" type="submit" styled-button>
       Continue
     </button>
   </footer>

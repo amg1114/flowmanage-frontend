@@ -29,7 +29,7 @@ export class WorkflowDescriptionComponent {
   }
 
   onSubmit() {
-    if (this.workflowForm.valid) {
+    if (this.formValid) {
       this.workflowsService.storeWorkflowDraft();
       this.router.navigate(['/dashboard/workflows/create/status']);
     }
@@ -38,5 +38,12 @@ export class WorkflowDescriptionComponent {
   onReset() {
     this.workflowsService.discardWorkflow();
     this.router.navigate(['/dashboard/workflows']);
+  }
+
+  get formValid() {
+    return (
+      this.workflowForm.get('title')?.valid &&
+      this.workflowForm.get('description')?.valid
+    );
   }
 }
