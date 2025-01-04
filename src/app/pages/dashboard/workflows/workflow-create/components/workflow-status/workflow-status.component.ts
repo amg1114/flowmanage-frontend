@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
-import { WorkflowsService } from '@app/core/services/workflows/workflows.service';
+import { CreateWorkflowsService } from '@app/core/services/workflows/create-workflows.service';
 
 import { LucideAngularModule, Plus } from 'lucide-angular';
 
@@ -23,7 +23,7 @@ export class WorkflowStatusComponent {
   readonly CreateIcon = Plus;
   workflowForm!: FormGroup;
 
-  constructor(private workflowsService: WorkflowsService) {
+  constructor(private workflowsService: CreateWorkflowsService) {
     this.workflowForm = this.workflowsService.newWorkflow;
   }
 

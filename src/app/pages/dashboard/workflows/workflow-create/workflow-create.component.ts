@@ -9,7 +9,7 @@ import {
 
 import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { WorkflowsService } from '@app/core/services/workflows/workflows.service';
+import { CreateWorkflowsService } from '@app/core/services/workflows/create-workflows.service';
 import { WorkflowPreviewComponent } from '../../components/workflows/workflow-preview/workflow-preview.component';
 
 @Component({
@@ -41,7 +41,7 @@ export class WorkflowCreateComponent {
 
   workflowForm!: FormGroup;
 
-  constructor(private workflowsService: WorkflowsService) {
+  constructor(private workflowsService: CreateWorkflowsService) {
     this.workflowForm = this.workflowsService.newWorkflow;
   }
 

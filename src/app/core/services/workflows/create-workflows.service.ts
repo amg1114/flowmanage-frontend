@@ -8,7 +8,7 @@ import { workflowPlaceHolder } from '@app/core/utils/forms/workflows/create-work
 @Injectable({
   providedIn: 'root',
 })
-export class WorkflowsService {
+export class CreateWorkflowsService {
   static WORKFLOW_DRAFT_KEY = 'workflow-draft';
 
   newWorkflow: FormGroup;
@@ -36,7 +36,9 @@ export class WorkflowsService {
   }
 
   addDefaultData(): void {
-    const draft = localStorage.getItem(WorkflowsService.WORKFLOW_DRAFT_KEY);
+    const draft = localStorage.getItem(
+      CreateWorkflowsService.WORKFLOW_DRAFT_KEY,
+    );
 
     if (draft) {
       const parsedDraft = JSON.parse(draft);
@@ -84,13 +86,13 @@ export class WorkflowsService {
     if (!this.newWorkflow.valid) return;
 
     localStorage.setItem(
-      WorkflowsService.WORKFLOW_DRAFT_KEY,
+      CreateWorkflowsService.WORKFLOW_DRAFT_KEY,
       JSON.stringify(this.newWorkflow.getRawValue()),
     );
   }
 
   discardWorkflow(): void {
     this.newWorkflow.reset();
-    localStorage.removeItem(WorkflowsService.WORKFLOW_DRAFT_KEY);
+    localStorage.removeItem(CreateWorkflowsService.WORKFLOW_DRAFT_KEY);
   }
 }
