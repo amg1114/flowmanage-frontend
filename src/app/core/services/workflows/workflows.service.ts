@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { statusPlaceHolder } from '@app/core/utils/forms/status/create-status';
 import { workflowPlaceHolder } from '@app/core/utils/forms/workflows/create-workflow';
 
 @Injectable({
@@ -14,7 +15,10 @@ export class WorkflowsService {
     const draft = localStorage.getItem(WorkflowsService.WORKFLOW_DRAFT_KEY);
     if (draft) {
       this.newWorkflow.patchValue(JSON.parse(draft));
+      return;
     }
+
+    this.newWorkflow.get('status')?.setValue(statusPlaceHolder);
   }
 
   storeWorkflowDraft(): void {

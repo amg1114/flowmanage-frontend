@@ -17,6 +17,10 @@ export default {
       transparent: 'transparent',
       white: '#ffffff',
       gray: '#f5f5f5',
+      placeholder: {
+        DEFAULT: '#BBBBBB',
+        dark: '#8E8E8E',
+      },
       resource: {
         cyan: {
           DEFAULT: '#0FC3C3',
