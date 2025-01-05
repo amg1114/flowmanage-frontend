@@ -8,7 +8,6 @@ import { LucideAngularModule, Plus } from 'lucide-angular';
   template: `<button type="button" action-button>
     <lucide-angular [img]="CreateIcon" size="18"></lucide-angular>
   </button>`,
-  styles: ``,
 })
 export class ActionCreateComponent {
   readonly CreateIcon = Plus;

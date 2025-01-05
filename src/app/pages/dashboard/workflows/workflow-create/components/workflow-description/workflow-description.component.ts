@@ -17,7 +17,6 @@ import { Router } from '@angular/router';
     StyledButtonComponent,
   ],
   templateUrl: './workflow-description.component.html',
-  styles: ``,
 })
 export class WorkflowDescriptionComponent {
   workflowForm!: FormGroup;

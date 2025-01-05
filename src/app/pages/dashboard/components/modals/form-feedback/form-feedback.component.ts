@@ -5,7 +5,6 @@ import { LucideAngularModule, Loader, CircleCheckBig, X } from 'lucide-angular';
   selector: 'modal-form-feedback',
   imports: [LucideAngularModule],
   templateUrl: './form-feedback.component.html',
-  styles: ``,
 })
 export class ModalFormFeedbackComponent {
   readonly LoaderIcon = Loader;

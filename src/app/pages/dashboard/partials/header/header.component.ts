@@ -10,7 +10,6 @@ import { DashboardConfigService } from '@app/core/services/dashboard-config.serv
   selector: 'dashboard-header',
   imports: [CommonModule, RouterLink],
   templateUrl: './header.component.html',
-  styles: ``,
 })
 export class HeaderComponent {
   @Input() loggedUser!: LoggedUser;

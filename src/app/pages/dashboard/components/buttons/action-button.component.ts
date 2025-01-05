@@ -4,7 +4,6 @@ import { Component, HostBinding } from '@angular/core';
   selector: '[action-button]',
   imports: [],
   template: ` <ng-content> </ng-content> `,
-  styles: ``,
 })
 export class ActionButtonComponent {
   @HostBinding('class')

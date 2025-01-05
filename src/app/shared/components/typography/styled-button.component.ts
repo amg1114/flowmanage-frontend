@@ -5,7 +5,6 @@ import { AbstractControl, FormControl } from '@angular/forms';
   selector: '[styled-button]',
   imports: [],
   template: ` <ng-content></ng-content> `,
-  styles: ``,
 })
 export class StyledButtonComponent {
   @Input() variant: 'outlined' | 'filled' | 'ghosted' = 'filled';

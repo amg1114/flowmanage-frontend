@@ -20,7 +20,6 @@ import { RouterLink } from '@angular/router';
     RouterLink,
   ],
   templateUrl: './workflow-listing.component.html',
-  styles: ``,
 })
 export class WorkflowListingComponent {
   readonly LoadIcon = Loader;
