@@ -1,0 +1,83 @@
+@if (open) {
+  <section
+    class="fixed inset-0 flex items-start justify-center bg-charcoal/50 py-16 dark:bg-charcoal/50"
+  >
+    <main
+      class="w-full max-w-screen-sm rounded bg-canvas p-4 md:p-8 dark:bg-canvas-dark"
+    >
+      <h3 class="mb-4 font-roboto text-xl font-semibold uppercase">
+        Create a new status
+      </h3>
+
+      <p>
+        <span
+          class="inline-flex items-center justify-center gap-1 rounded-full bg-accent/30 px-2 text-sm uppercase dark:bg-accent-dark/30"
+        >
+          <span
+            class="inline-block h-3 w-3 rounded-full"
+            [class]="statusBadgeColors[type]"
+          ></span>
+          {{ type }}</span
+        >
+        statuses
+        @switch (type) {
+          @case ('inactive') {
+            indicate tasks that are no longer actively progressing in the
+            workflow. These may include statuses like
+            <strong>"On Hold"</strong>, <strong>"Canceled"</strong>, or
+            <strong>"Archived"</strong>.
+          }
+          @case ('active') {
+            indicate tasks that are currently in progress. These may include
+            statuses like <strong>"In Progress"</strong>,
+            <strong>"In Review"</strong>, or <strong>"Blocked"</strong>.
+          }
+          @case ('completed') {
+            indicate tasks that have been completed. These may include statuses
+            like <strong>"Done"</strong>, <strong>"Approved"</strong>, or
+            <strong>"Closed"</strong>.
+          }
+        }
+      </p>
+
+      <form
+        [formGroup]="statusForm"
+        class="mt-8 flex flex-col gap-4"
+        (ngSubmit)="onSubmit()"
+      >
+        <styled-input
+          id="name"
+          type="text"
+          label="Name"
+          name="name"
+          formControlName="name"
+          placeholder="Enter the status name"
+          [control]="statusForm.get('name')"
+        />
+
+        <styled-text-area
+          id="description"
+          name="description"
+          label="Description"
+          placeholder="Enter description"
+          formControlName="description"
+          [control]="statusForm.get('description')"
+        />
+
+        <footer class="flex justify-end gap-4">
+          <button
+            type="button"
+            styled-button
+            variant="outlined"
+            (click)="onDiscard()"
+          >
+            Cancel
+          </button>
+          <button type="submit" styled-button [disabled]="statusForm.invalid">
+            Create
+          </button>
+        </footer>
+      </form>
+    </main>
+  </section>
+}
