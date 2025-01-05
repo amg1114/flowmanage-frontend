@@ -9,7 +9,7 @@ export interface Workflow {
   slug: string;
   description: null | string;
   color: ResourceColors;
-  status: WorkflowStatus[];
+  statuses: WorkflowStatus[];
 }
 
 export interface WorkflowStatus {

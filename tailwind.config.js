@@ -13,7 +13,7 @@ export default {
         canvas: { DEFAULT: '#d1e7e5', dark: '#172d2b' },
       },
 
-      error: { DEFAULT: '#d30000', dark: '#d30000' },
+      error: { DEFAULT: '#d30000', dark: '#d75353' },
       success: '#007a37',
       transparent: 'transparent',
       white: '#ffffff',

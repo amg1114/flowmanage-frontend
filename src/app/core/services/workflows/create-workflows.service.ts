@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
@@ -7,6 +8,7 @@ import {
   requireAllStatusTypesValidator,
   uniqueStatusesValidator,
 } from '@app/core/utils/forms/status/create-status';
+import { BehaviorSubject, map, Observable, throwError, catchError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +18,18 @@ export class CreateWorkflowsService {
 
   newWorkflow!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  private creating = new BehaviorSubject<boolean>(false);
+  creating$ = this.creating.asObservable();
+
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+  ) {
     this.buildForm();
   }
 
   get workflowStatuses(): FormArray {
-    return this.newWorkflow.get('status') as FormArray;
+    return this.newWorkflow.get('statuses') as FormArray;
   }
 
   buildForm(): void {
@@ -36,7 +44,7 @@ export class CreateWorkflowsService {
       ],
       description: ['', [Validators.minLength(10), Validators.maxLength(120)]],
       color: ['', Validators.required],
-      status: this.fb.array(
+      statuses: this.fb.array(
         [],
         [requireAllStatusTypesValidator, uniqueStatusesValidator],
       ),
@@ -114,5 +122,28 @@ export class CreateWorkflowsService {
     this.workflowStatuses.clear();
 
     this.buildForm();
+  }
+
+  saveWorkflow(): Observable<any> {
+    if (!this.newWorkflow.valid) {
+      throw new Error('Form is invalid');
+    }
+
+    const workflow = this.newWorkflow.getRawValue();
+
+    this.creating.next(true);
+
+    return this.http.post('/api/workflows/create', workflow).pipe(
+      map((res) => {
+        localStorage.removeItem(CreateWorkflowsService.WORKFLOW_DRAFT_KEY);
+        this.creating.next(false);
+        return res;
+      }),
+      catchError((error) => {
+        this.creating.next(false);
+        this.storeWorkflowDraft();
+        return throwError(() => error);
+      }),
+    );
   }
 }

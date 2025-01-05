@@ -1,5 +1,5 @@
 <article
-  class="bg-card dark:bg-card-dark flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 p-4 transition-colors"
+  class="flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 bg-card p-4 transition-colors dark:bg-card-dark"
   [class]="resourceBorder[workflow.color]"
 >
   <header class="flex w-full flex-wrap items-start justify-between gap-4">
@@ -14,7 +14,7 @@
       {{ workflow.title ? workflow.title : 'Workflow Title' }}
     </h4>
     <p class="w-full break-words text-sm font-light">
-      {{ workflow.description ? workflow.description : 'Workflow Description' }}
+      {{ workflow.description ? workflow.description : 'No Description' }}
     </p>
   </body>
 </article>
