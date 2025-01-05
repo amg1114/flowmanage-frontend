@@ -1,7 +1,6 @@
 <article
   class="relative flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 bg-card p-4 transition-colors dark:bg-card-dark"
   [class]="resourceBorder[workflow.color]"
-  [routerLink]="['/dashboard', workflow.slug]"
 >
   <header class="flex w-full flex-wrap items-start justify-between gap-4">
     <figure class="w-fit rounded p-1" [class]="resourceBg[workflow.color]">
@@ -29,5 +28,9 @@
     </h4>
     <p class="text-sm font-light">{{ workflow.description }}</p>
   </body>
-  <span class="absolute inset-0 cursor-pointer"></span>
+  <span
+    class="absolute inset-0 cursor-pointer opacity-0 transition-opacity hover:opacity-10"
+    [class]="resourceBg[workflow.color]"
+    [routerLink]="['/dashboard', workflow.slug]"
+  ></span>
 </article>
