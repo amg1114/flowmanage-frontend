@@ -1,27 +1,16 @@
 <section>
   <header class="flex flex-wrap items-center gap-4">
     <h3 class="font-roboto text-xl font-normal uppercase">Workflows States</h3>
-
-    <button
-      class="flex items-center gap-1 rounded bg-placeholder/30 p-1 text-xs uppercase transition-colors hover:bg-placeholder dark:bg-placeholder-dark/30 dark:hover:bg-placeholder-dark"
-    >
-      <i-lucide [img]="CreateIcon" size="10" />
-      Pending State
-    </button>
-
-    <button
-      class="flex items-center gap-1 rounded bg-secondary/30 p-1 text-xs uppercase transition-colors hover:bg-secondary dark:bg-secondary-dark/30 dark:hover:bg-secondary-dark"
-    >
-      <i-lucide [img]="CreateIcon" size="10" />
-      Active State
-    </button>
-
-    <button
-      class="flex items-center gap-1 rounded bg-accent/30 p-1 text-xs uppercase transition-colors hover:bg-accent dark:bg-accent-dark/30 dark:hover:bg-accent-dark"
-    >
-      <i-lucide [img]="CreateIcon" size="10" />
-      Completed State
-    </button>
+    @for (status of createStatusButtons; track $index) {
+      <button
+        class="flex items-center gap-1 rounded p-1 text-xs uppercase transition-colors"
+        [class]="status.class"
+        (click)="showCreateStatusModal(status.type)"
+      >
+        <i-lucide [img]="CreateIcon" size="10" />
+        {{ status.label }}
+      </button>
+    }
 
     @if (errorMessages.length) {
       <ul
@@ -49,4 +38,13 @@
       </p>
     }
   </section>
+
+  @if (createNewStatusType) {
+    <board-modal-create-status
+      [open]="!!createNewStatusType"
+      [type]="createNewStatusType"
+      (onCreate)="onCreateStatus($event)"
+      (onClose)="hideStatusModal()"
+    />
+  }
 </section>

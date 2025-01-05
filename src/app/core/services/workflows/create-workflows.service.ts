@@ -54,6 +54,11 @@ export class CreateWorkflowsService {
       const parsedDraft = JSON.parse(draft);
       this.newWorkflow.patchValue(parsedDraft);
 
+      const statuses = parsedDraft.status || [];
+      this.workflowStatuses.clear();
+      statuses.forEach((status: Partial<WorkflowStatus>) =>
+        this.addStatus(status, false),
+      );
       return;
     }
 
@@ -64,7 +69,6 @@ export class CreateWorkflowsService {
   addStatus(status: Partial<WorkflowStatus>, store = true): void {
     this.workflowStatuses.push(
       this.fb.group({
-        id: [status.id],
         name: [
           status.name,
           [
@@ -74,14 +78,16 @@ export class CreateWorkflowsService {
           ],
         ],
         description: [
-          status.description,
+          status.description ?? '',
           [Validators.minLength(10), Validators.maxLength(120)],
         ],
         type: [status.type, [Validators.required]],
       }),
     );
 
-    this.storeWorkflowDraft();
+    if (store) {
+      this.storeWorkflowDraft();
+    }
   }
 
   removeStatus(status: any): void {
