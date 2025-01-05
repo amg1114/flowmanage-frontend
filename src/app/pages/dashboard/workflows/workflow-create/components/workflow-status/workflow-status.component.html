@@ -23,21 +23,34 @@
     }
   </header>
 
-  <section class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-    <board-status-preview
-      *ngFor="let status of statuses"
-      [status]="status"
-      (deletedStatus)="onDeleteStatus($event)"
-    />
-
-    @if (!statuses.length) {
-      <p
-        class="col-span-full rounded border-2 border-dashed border-placeholder/30 p-4 text-center text-placeholder dark:border-placeholder-dark/30"
-      >
-        No statuses added yet.
-      </p>
-    }
-  </section>
+  <form [formGroup]="workflowForm" class="mt-4">
+    <section
+      cdkDropList
+      formArrayName="status"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)"
+      [cdkDropListData]="statusFormArray.controls"
+      class="relative mt-8 grid grid-cols-1 gap-4 rounded border border-dashed border-charcoal/10 p-4 sm:grid-cols-2 lg:grid-cols-4 dark:border-charcoal-dark/10"
+    >
+      <board-status-preview
+        *ngFor="let status of statusFormArray.controls; let i = index"
+        (deletedStatus)="onDeleteStatus($event)"
+        [statusForm]="status"
+      />
+      @if (!statuses.length) {
+        <p
+          class="col-span-full rounded border-2 border-dashed border-placeholder/30 p-4 text-center text-placeholder dark:border-placeholder-dark/30"
+        >
+          No statuses added yet.
+        </p>
+      }
+      <!-- <div cdkDropList (cdkDropListDropped)="drop($event)" class="drag-container">
+        <div cdkDrag *ngFor="let item of statusFormArray.controls">
+          Drag: {{ item.value.type }}
+        </div>
+      </div> -->
+    </section>
+  </form>
 
   @if (createNewStatusType) {
     <board-modal-create-status

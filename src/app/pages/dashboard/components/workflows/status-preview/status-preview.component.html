@@ -1,13 +1,18 @@
-<article>
+<article [formGroup]="statusForm" cdkDrag class="overflow-hidden">
+  <div
+    class="relative h-full w-full rounded border border-dashed border-charcoal/30 dark:border-charcoal-dark/30"
+    *cdkDragPlaceholder
+  ></div>
   <header class="-mr-1 mb-0.5 flex items-center justify-end">
     <button
-      class="text-placeholder/40 dark:text-placeholder-dark/40 hover:bg-placeholder/30 dark:hover:bg-placeholder-dark/30 rounded bg-transparent p-1 transition-colors hover:text-charcoal dark:hover:text-charcoal-dark"
+      class="rounded bg-transparent p-1 text-placeholder/40 transition-colors hover:bg-placeholder/30 hover:text-charcoal dark:text-placeholder-dark/40 dark:hover:bg-placeholder-dark/30 dark:hover:text-charcoal-dark"
       (click)="onDeleted()"
     >
       <i-lucide [img]="DeleteIcon" size="12" />
     </button>
     <button
-      class="text-placeholder/40 dark:text-placeholder-dark/40 hover:bg-placeholder/30 dark:hover:bg-placeholder-dark/30 rounded bg-transparent p-1 transition-colors hover:text-charcoal dark:hover:text-charcoal-dark"
+      class="rounded bg-transparent p-1 text-placeholder/40 transition-colors hover:bg-placeholder/30 hover:text-charcoal dark:text-placeholder-dark/40 dark:hover:bg-placeholder-dark/30 dark:hover:text-charcoal-dark"
+      cdkDragHandle
     >
       <i-lucide [img]="DragIcon" size="12" />
     </button>

@@ -9,6 +9,11 @@ import { LucideAngularModule, Plus } from 'lucide-angular';
 import { StatusPreviewComponent } from '../../../../components/workflows/status-preview/status-preview.component';
 import { CreateStatusComponent } from '../../../../components/modals/create-status/create-status.component';
 import { WorkflowStatusType } from '@app/core/utils/status';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-workflow-status',
@@ -18,6 +23,7 @@ import { WorkflowStatusType } from '@app/core/utils/status';
     LucideAngularModule,
     StatusPreviewComponent,
     CreateStatusComponent,
+    DragDropModule,
   ],
   templateUrl: './workflow-status.component.html',
   styles: ``,
@@ -76,6 +82,10 @@ export class WorkflowStatusComponent {
     return this.workflowForm.get('status')?.getRawValue() as WorkflowStatus[];
   }
 
+  get statusFormArray(): FormArray<FormGroup> {
+    return this.workflowForm.get('status') as FormArray;
+  }
+
   showCreateStatusModal(type: WorkflowStatusType): void {
     this.createNewStatusType = type;
   }
@@ -91,5 +101,20 @@ export class WorkflowStatusComponent {
 
   onDeleteStatus(status: WorkflowStatus): void {
     this.workflowsService.removeStatus(status);
+  }
+
+  drop(event: CdkDragDrop<FormGroup[]>): void {
+    // Cambiar los elementos en la vista
+
+    moveItemInArray(
+      this.statusFormArray.controls,
+      event.previousIndex,
+      event.currentIndex,
+    );
+
+    // Cambiar los valores en el FormArray
+    const itemsValue = this.statusFormArray.value;
+    moveItemInArray(itemsValue, event.previousIndex, event.currentIndex);
+    this.statusFormArray.patchValue(itemsValue);
   }
 }
