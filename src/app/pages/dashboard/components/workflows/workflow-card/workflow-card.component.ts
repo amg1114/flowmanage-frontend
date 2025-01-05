@@ -20,7 +20,6 @@ import {
   selector: 'board-workflow-card',
   imports: [LucideAngularModule, RouterLink, CommonModule],
   templateUrl: './workflow-card.component.html',
-  styles: ``,
 })
 export class WorkflowCardComponent {
   readonly WorkflowIcon = WorkflowIcon;

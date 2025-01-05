@@ -12,7 +12,6 @@ import { LucideAngularModule, Workflow as WorkflowIcon } from 'lucide-angular';
   selector: 'board-workflow-preview',
   imports: [LucideAngularModule, CommonModule],
   templateUrl: './workflow-preview.component.html',
-  styles: ``,
 })
 export class WorkflowPreviewComponent {
   readonly WorkflowIcon = WorkflowIcon;

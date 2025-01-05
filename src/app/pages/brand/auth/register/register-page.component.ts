@@ -25,7 +25,6 @@ import { Loader, LucideAngularModule } from 'lucide-angular';
   ],
   providers: [AuthService],
   templateUrl: './register-page.component.html',
-  styles: ``,
 })
 export class RegisterPageComponent {
   readonly LoadIcon = Loader;

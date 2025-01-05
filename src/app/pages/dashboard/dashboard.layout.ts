@@ -14,7 +14,7 @@ import { DashboardConfigService } from '@app/core/services/dashboard-config.serv
   template: `
     <main class="container">
       <span
-        class="text-secondary dark:text-secondary-dark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+        class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-secondary dark:text-secondary-dark"
         *ngIf="loading"
       >
         <i-lucide [img]="LoaderIcon" class="h-16 w-16 animate-spin"></i-lucide>
@@ -28,7 +28,6 @@ import { DashboardConfigService } from '@app/core/services/dashboard-config.serv
       </div>
     </main>
   `,
-  styles: ``,
 })
 export class DashboardLayout implements OnInit {
   loggedUser: LoggedUser | null = null;

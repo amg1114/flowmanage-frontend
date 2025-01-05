@@ -12,7 +12,6 @@ import { LucideAngularModule, Filter } from 'lucide-angular';
       class="fill-accent dark:fill-accent-dark"
     ></lucide-angular>
   </button>`,
-  styles: ``,
 })
 export class ActionFilterComponent {
   readonly FilterIcon = Filter;

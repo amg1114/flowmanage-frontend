@@ -33,7 +33,6 @@ import { finalize } from 'rxjs';
     ModalFormFeedbackComponent,
   ],
   templateUrl: './workflow-status.component.html',
-  styles: ``,
 })
 export class WorkflowStatusComponent {
   readonly CreateIcon = Plus;

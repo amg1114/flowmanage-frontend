@@ -17,7 +17,6 @@ import {
   selector: 'board-status-preview',
   imports: [LucideAngularModule, DragDropModule, ReactiveFormsModule],
   templateUrl: './status-preview.component.html',
-  styles: ``,
 })
 export class StatusPreviewComponent {
   readonly DeleteIcon = Trash2;

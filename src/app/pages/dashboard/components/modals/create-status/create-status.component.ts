@@ -28,7 +28,6 @@ import { StyledButtonComponent } from '@app/shared/components/typography/styled-
     StyledTextAreaComponent,
   ],
   templateUrl: './create-status.component.html',
-  styles: ``,
 })
 export class CreateStatusComponent implements OnInit {
   @Input() type: WorkflowStatusType = WorkflowStatusType.INACTIVE;

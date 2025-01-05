@@ -4,8 +4,5 @@ import { Component } from '@angular/core';
   selector: 'app-workflow-detail',
   imports: [],
   templateUrl: './workflow-detail.component.html',
-  styles: ``
 })
-export class WorkflowDetailComponent {
-
-}
+export class WorkflowDetailComponent {}
