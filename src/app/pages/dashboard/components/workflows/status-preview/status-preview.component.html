@@ -1,4 +1,8 @@
-<article [formGroup]="statusForm" cdkDrag class="overflow-hidden">
+<article
+  [formGroup]="statusForm"
+  cdkDrag
+  class="flex aspect-video h-auto w-full flex-col overflow-hidden"
+>
   <div
     class="relative h-full w-full rounded border border-dashed border-charcoal/30 dark:border-charcoal-dark/30"
     *cdkDragPlaceholder
@@ -17,7 +21,7 @@
       <i-lucide [img]="DragIcon" size="12" />
     </button>
   </header>
-  <div class="rounded p-2" [class]="statusBackground[status.type]">
+  <div class="flex-1 rounded p-2" [class]="statusBackground[status.type]">
     <h4 class="mb-4 flex items-center gap-1 font-roboto font-normal uppercase">
       <i-lucide [img]="statusIcons[status.type]" size="20" />
       {{ status.name }}

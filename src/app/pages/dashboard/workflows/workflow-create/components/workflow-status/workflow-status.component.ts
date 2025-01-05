@@ -104,17 +104,15 @@ export class WorkflowStatusComponent {
   }
 
   drop(event: CdkDragDrop<FormGroup[]>): void {
-    // Cambiar los elementos en la vista
-
     moveItemInArray(
       this.statusFormArray.controls,
       event.previousIndex,
       event.currentIndex,
     );
 
-    // Cambiar los valores en el FormArray
     const itemsValue = this.statusFormArray.value;
     moveItemInArray(itemsValue, event.previousIndex, event.currentIndex);
     this.statusFormArray.patchValue(itemsValue);
+    this.workflowsService.storeWorkflowDraft();
   }
 }
