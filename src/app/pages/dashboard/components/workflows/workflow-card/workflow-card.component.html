@@ -1,7 +1,7 @@
 <article
-  class="bg-card dark:bg-card-dark relative flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 p-4 transition-colors"
+  class="relative flex h-full w-full flex-wrap items-start gap-4 rounded border-l-4 bg-card p-4 transition-colors dark:bg-card-dark"
   [class]="resourceBorder[workflow.color]"
-  [routerLink]="!preview ? ['/dashboard', workflow.slug] : null"
+  [routerLink]="['/dashboard', workflow.slug]"
 >
   <header class="flex w-full flex-wrap items-start justify-between gap-4">
     <figure class="w-fit rounded p-1" [class]="resourceBg[workflow.color]">

@@ -6,7 +6,7 @@ import { ActionInfoComponent } from '../../components/buttons/action-info.compon
 import { LoggedUser } from '@app/core/interfaces/user/user.interface';
 import { UsersService } from '@app/core/services/users.service';
 import { LucideAngularModule, Loader } from 'lucide-angular';
-import { WorkflowCardComponent } from '../../components/workflows/workflow-card.component';
+import { WorkflowCardComponent } from '../../components/workflows/workflow-card/workflow-card.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
