@@ -1,4 +1,6 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
 import { WorkflowStatusType } from '@app/core/utils/status';
 import {
@@ -13,7 +15,7 @@ import {
 
 @Component({
   selector: 'board-status-preview',
-  imports: [LucideAngularModule],
+  imports: [LucideAngularModule, DragDropModule, ReactiveFormsModule],
   templateUrl: './status-preview.component.html',
   styles: ``,
 })
@@ -21,7 +23,7 @@ export class StatusPreviewComponent {
   readonly DeleteIcon = Trash2;
   readonly DragIcon = GripVertical;
 
-  @Input() status!: WorkflowStatus;
+  @Input() statusForm!: FormGroup;
 
   @Output('deletedStatus')
   deleted = new EventEmitter<WorkflowStatus>();
@@ -40,6 +42,10 @@ export class StatusPreviewComponent {
   };
 
   constructor() {}
+
+  get status(): WorkflowStatus {
+    return this.statusForm.value as WorkflowStatus;
+  }
 
   onDeleted(): void {
     this.deleted.emit(this.status);
