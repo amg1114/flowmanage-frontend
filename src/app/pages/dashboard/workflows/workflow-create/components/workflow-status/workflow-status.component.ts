@@ -14,16 +14,23 @@ import {
   DragDropModule,
   moveItemInArray,
 } from '@angular/cdk/drag-drop';
+import { StyledButtonComponent } from '@app/shared/components/typography/styled-button.component';
+import { Router, RouterLink } from '@angular/router';
+import { ModalFormFeedbackComponent } from '@app/pages/dashboard/components/modals/form-feedback/form-feedback.component';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-workflow-status',
   imports: [
-    ReactiveFormsModule,
     CommonModule,
+    ReactiveFormsModule,
     LucideAngularModule,
+    DragDropModule,
+    RouterLink,
     StatusPreviewComponent,
     CreateStatusComponent,
-    DragDropModule,
+    StyledButtonComponent,
+    ModalFormFeedbackComponent,
   ],
   templateUrl: './workflow-status.component.html',
   styles: ``,
@@ -58,12 +65,21 @@ export class WorkflowStatusComponent {
 
   createNewStatusType: WorkflowStatusType | null = null;
 
-  constructor(private workflowsService: CreateWorkflowsService) {
+  loading = false;
+  success = false;
+  error = false;
+  message = '';
+
+  constructor(
+    private workflowsService: CreateWorkflowsService,
+    private router: Router,
+  ) {
     this.workflowForm = this.workflowsService.newWorkflow;
 
-    this.workflowForm.get('status')?.statusChanges.subscribe(() => {
+    this.statusFormArray.statusChanges.subscribe(() => {
       this.errorMessages = [];
-      const errors = (this.workflowForm.get('status') as FormArray)?.errors;
+      const errors = this.statusFormArray.errors;
+
       if (!errors) return;
 
       if (errors['duplicateStatuses']) {
@@ -78,12 +94,12 @@ export class WorkflowStatusComponent {
     });
   }
 
-  get statuses(): WorkflowStatus[] {
-    return this.workflowForm.get('status')?.getRawValue() as WorkflowStatus[];
+  get statusFormArray(): FormArray<FormGroup> {
+    return this.workflowForm.get('statuses') as FormArray;
   }
 
-  get statusFormArray(): FormArray<FormGroup> {
-    return this.workflowForm.get('status') as FormArray;
+  get statuses(): WorkflowStatus[] {
+    return this.statusFormArray.getRawValue() as WorkflowStatus[];
   }
 
   showCreateStatusModal(type: WorkflowStatusType): void {
@@ -103,6 +119,33 @@ export class WorkflowStatusComponent {
     this.workflowsService.removeStatus(status);
   }
 
+  onSubmit(): void {
+    this.loading = true;
+    this.workflowsService
+      .saveWorkflow()
+      .pipe(
+        finalize(() => {
+          this.loading = false;
+        }),
+      )
+      .subscribe({
+        next: () => {
+          this.success = true;
+          this.message = 'Workflow created successfully';
+        },
+        error: (error) => {
+          console.error(error);
+          this.error = true;
+          this.message = error.error.message || 'An error occurred';
+        },
+      });
+  }
+
+  onDiscard(): void {
+    this.workflowsService.discardWorkflow();
+    this.router.navigate(['/dashboard/workflows']);
+  }
+
   drop(event: CdkDragDrop<FormGroup[]>): void {
     moveItemInArray(
       this.statusFormArray.controls,
@@ -111,7 +154,9 @@ export class WorkflowStatusComponent {
     );
 
     const itemsValue = this.statusFormArray.value;
+
     moveItemInArray(itemsValue, event.previousIndex, event.currentIndex);
+
     this.statusFormArray.patchValue(itemsValue);
     this.workflowsService.storeWorkflowDraft();
   }

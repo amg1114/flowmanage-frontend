@@ -23,10 +23,10 @@
     }
   </header>
 
-  <form [formGroup]="workflowForm" class="mt-4">
+  <form [formGroup]="workflowForm" class="mt-4" (ngSubmit)="onSubmit()">
     <section
       cdkDropList
-      formArrayName="status"
+      formArrayName="statuses"
       cdkDropListOrientation="horizontal"
       (cdkDropListDropped)="drop($event)"
       [cdkDropListData]="statusFormArray.controls"
@@ -41,6 +41,31 @@
         <span class="col-span-full text-center">No statuses added yet.</span>
       }
     </section>
+
+    <footer class="mt-8 flex w-full items-center justify-end gap-4">
+      <button
+        styled-button
+        type="button"
+        variant="ghosted"
+        class="mr-auto"
+        routerLink="/dashboard/workflows/create/description"
+      >
+        Back
+      </button>
+
+      <button styled-button variant="outlined" (click)="onDiscard()">
+        Discard
+      </button>
+
+      <button
+        [disabled]="!workflowForm.valid"
+        type="submit"
+        styled-button
+        colorStyle="accent"
+      >
+        Save
+      </button>
+    </footer>
   </form>
 
   @if (createNewStatusType) {
@@ -51,4 +76,11 @@
       (onClose)="hideStatusModal()"
     />
   }
+
+  <modal-form-feedback
+    [error]="error"
+    [success]="success"
+    [loading]="loading"
+    [message]="message"
+  />
 </section>

@@ -1,0 +1,33 @@
+@if (loading || error || success) {
+  <section
+    class="fixed inset-0 flex items-center justify-center bg-charcoal/50 py-16 dark:bg-charcoal/50"
+  >
+    <main
+      class="w-full max-w-screen-sm rounded bg-canvas p-4 md:p-8 dark:bg-canvas-dark"
+    >
+      <section class="flex flex-col items-center">
+        @if (loading) {
+          <i-lucide
+            [img]="LoaderIcon"
+            class="mb-4 h-16 w-16 text-secondary dark:text-secondary-dark"
+          />
+        }
+        @if (success) {
+          <i-lucide
+            [img]="SuccessIcon"
+            class="mb-4 h-16 w-16 text-accent dark:text-accent-dark"
+          />
+        }
+        <i-lucide
+          [img]="ErrorIcon"
+          class="mb-4 h-16 w-16 text-error dark:text-error-dark"
+        />
+        @if (message) {
+          <p class="max-w-sm text-center text-lg">
+            {{ message }}
+          </p>
+        }
+      </section>
+    </main>
+  </section>
+}
