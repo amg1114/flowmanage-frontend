@@ -3,7 +3,7 @@
   class="grid grid-cols-1 gap-4 md:grid-cols-3"
   (ngSubmit)="onSubmit()"
 >
-  <section class="col-span-2 flex flex-col gap-4">
+  <section class="col-span-full flex flex-col gap-4 xl:col-span-2">
     <styled-input
       id="title"
       name="title"
@@ -22,7 +22,11 @@
     />
   </section>
 
-  <color-picker formControlName="color" [control]="workflowForm.get('color')" />
+  <color-picker
+    formControlName="color"
+    [control]="workflowForm.get('color')"
+    class="col-span-full xl:col-span-1"
+  />
 
   <footer class="col-span-full mt-8 flex items-center justify-end gap-4">
     <button styled-button variant="outlined" (click)="onReset()">

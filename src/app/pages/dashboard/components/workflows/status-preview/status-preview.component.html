@@ -15,7 +15,7 @@
       <i-lucide [img]="DeleteIcon" size="12" />
     </button>
     <button
-      class="rounded bg-transparent p-1 text-placeholder/40 transition-colors hover:bg-placeholder/30 hover:text-charcoal dark:text-placeholder-dark/40 dark:hover:bg-placeholder-dark/30 dark:hover:text-charcoal-dark"
+      class="rounded bg-transparent p-1 text-placeholder/40 transition-colors hover:cursor-grab hover:bg-placeholder/30 hover:text-charcoal active:cursor-grabbing dark:text-placeholder-dark/40 dark:hover:bg-placeholder-dark/30 dark:hover:text-charcoal-dark"
       cdkDragHandle
     >
       <i-lucide [img]="DragIcon" size="12" />
@@ -26,6 +26,8 @@
       <i-lucide [img]="statusIcons[status.type]" size="20" />
       {{ status.name }}
     </h4>
-    <p class="text-sm font-light">{{ status.description }}</p>
+    <p class="text-sm font-light">
+      {{ status.description ? status.description : 'No description' }}
+    </p>
   </div>
 </article>
