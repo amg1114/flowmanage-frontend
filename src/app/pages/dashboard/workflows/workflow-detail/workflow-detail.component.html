@@ -1,1 +1,6 @@
-<p>workflow-detail works!</p>
+@if (workflow) {
+  <h3>{{ workflow.title }}</h3>
+  <p>{{ workflow.description }}</p>
+} @else {
+  Loading...
+}
