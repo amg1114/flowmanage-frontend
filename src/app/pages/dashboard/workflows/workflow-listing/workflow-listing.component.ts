@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, WritableSignal } from '@angular/core';
 
 import { ActionCreateComponent } from '../../components/buttons/action-create.component';
 import { ActionFilterComponent } from '../../components/buttons/action-filter.component';
@@ -8,6 +8,7 @@ import { UsersService } from '@app/core/services/users.service';
 import { LucideAngularModule, Loader } from 'lucide-angular';
 import { WorkflowCardComponent } from '../../components/workflows/workflow-card/workflow-card.component';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '@app/core/services/auth.service';
 
 @Component({
   selector: 'dashboard-workflow-listing',
@@ -24,13 +25,9 @@ import { RouterLink } from '@angular/router';
 export class WorkflowListingComponent {
   readonly LoadIcon = Loader;
 
-  loggedUser: LoggedUser | null = null;
+  loggedUser: WritableSignal<LoggedUser | null>;
 
-  constructor(private usersService: UsersService) {
-    this.usersService.loggedUser.subscribe((user) => {
-      if (user) {
-        this.loggedUser = user;
-      }
-    });
+  constructor(private authService: AuthService) {
+    this.loggedUser = this.authService.loggedUser;
   }
 }
