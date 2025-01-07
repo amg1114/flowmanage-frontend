@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { WorkflowStatus } from '@app/core/interfaces/workflows/workflow.interface';
 import { CreateWorkflowsService } from '@app/core/services/workflows/create-workflows.service';
@@ -18,6 +18,7 @@ import { StyledButtonComponent } from '@app/shared/components/typography/styled-
 import { Router, RouterLink } from '@angular/router';
 import { ModalFormFeedbackComponent } from '@app/pages/dashboard/components/modals/form-feedback/form-feedback.component';
 import { finalize } from 'rxjs';
+import { ModalFeedback } from '@app/core/interfaces/ui/modals';
 
 @Component({
   selector: 'app-workflow-status',
@@ -64,10 +65,11 @@ export class WorkflowStatusComponent {
 
   createNewStatusType: WorkflowStatusType | null = null;
 
-  loading = false;
-  success = false;
-  error = false;
-  message = '';
+  modalFeedback = signal<ModalFeedback>({
+    show: false,
+    type: 'loading',
+    message: '',
+  });
 
   constructor(
     private workflowsService: CreateWorkflowsService,
@@ -119,25 +121,40 @@ export class WorkflowStatusComponent {
   }
 
   onSubmit(): void {
-    this.loading = true;
-    this.workflowsService
-      .saveWorkflow()
-      .pipe(
-        finalize(() => {
-          this.loading = false;
-        }),
-      )
-      .subscribe({
-        next: () => {
-          this.success = true;
-          this.message = 'Workflow created successfully';
-        },
-        error: (error) => {
-          console.error(error);
-          this.error = true;
-          this.message = error.error.message || 'An error occurred';
-        },
-      });
+    this.modalFeedback.update((o) => ({
+      show: true,
+      type: 'loading',
+      message: 'Saving workflow...',
+    }));
+
+    this.workflowsService.saveWorkflow().subscribe({
+      next: () => {
+        this.modalFeedback.update((o) => ({
+          show: true,
+          type: 'success',
+          message: 'Workflow saved successfully!',
+        }));
+
+        setTimeout(() => {
+          this.modalFeedback.update((o) => ({ ...o, show: false }));
+          this.router.navigate(['/dashboard/workflows']);
+        }, 1200);
+      },
+      error: (error) => {
+        console.error(error);
+
+        this.modalFeedback.update((o) => ({
+          show: true,
+          type: 'error',
+          message:
+            error.error.message || 'An error occurred. Please try again.',
+        }));
+
+        setTimeout(() => {
+          this.modalFeedback.update((o) => ({ ...o, show: false }));
+        }, 1200);
+      },
+    });
   }
 
   onDiscard(): void {
