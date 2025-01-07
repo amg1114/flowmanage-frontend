@@ -35,8 +35,6 @@ import { AuthService } from '@app/core/services/auth.service';
 export class DashboardLayout implements OnInit {
   loggedUser: WritableSignal<LoggedUser | null>;
 
-  loading = true;
-
   readonly LoaderIcon = Loader;
 
   constructor(private authService: AuthService) {
