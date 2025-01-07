@@ -36,7 +36,7 @@ export class RegisterPageComponent {
     private authService: AuthService,
     private router: Router,
   ) {
-    if (authService.isAuthenticated()) {
+    if (authService.isLogged()) {
       this.router.navigate(['/dashboard']);
     }
 
