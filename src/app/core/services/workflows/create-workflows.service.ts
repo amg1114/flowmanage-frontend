@@ -9,6 +9,7 @@ import {
   uniqueStatusesValidator,
 } from '@app/core/utils/forms/status/create-status';
 import { BehaviorSubject, map, Observable, throwError, catchError } from 'rxjs';
+import { AuthService } from '../auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,7 @@ export class CreateWorkflowsService {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
+    private authService: AuthService,
   ) {
     this.buildForm();
   }
@@ -136,6 +138,7 @@ export class CreateWorkflowsService {
     return this.http.post('/api/workflows/create', workflow).pipe(
       map((res) => {
         localStorage.removeItem(CreateWorkflowsService.WORKFLOW_DRAFT_KEY);
+        this.authService.fetchUser().subscribe();
         this.creating.next(false);
         return res;
       }),
